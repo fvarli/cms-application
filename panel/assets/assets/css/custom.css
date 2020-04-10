@@ -1,0 +1,50 @@
+.input-form-error{
+    font-size: 12px;
+    color: #ff5b5b;
+    font-style: italic;
+}
+
+td{
+    vertical-align: middle!important;
+}
+
+th{
+    text-align: center!important;
+}
+
+.order{
+    text-align: center!important;
+    width: 50px!important;
+}
+
+.w300{
+    width: 300px!important;
+}
+
+.w250{
+    width: 250px!important;
+}
+
+.w150{
+    width: 150px!important;
+}
+
+.w125{
+    width: 125px!important;
+}
+
+.w100{
+    width: 100px!important;
+}
+
+.w50{
+    width: 50px!important;
+}
+
+.sortable{
+    cursor: move;
+}
+
+.video_upload_container{
+    display: none;
+}
