@@ -22,4 +22,9 @@ class Blank extends CI_Controller {
 	{
 		$this->load->view('blank_view');
 	}
+
+    public function product_list()
+    {
+
+	}
 }
