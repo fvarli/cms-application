@@ -38,7 +38,7 @@ class Home extends CI_Controller{
         $this->load->view($view_data->view_folder, $view_data);
     }
 
-    public function product_detail()
+    public function product_detail($url = "")
     {
         $view_data = new stdClass();
 
@@ -48,10 +48,18 @@ class Home extends CI_Controller{
         $this->load->helper("tools");
         $this->load->helper("text");
 
+        $view_data->product = $this->products_model->get_row(
+            array(
+                "isActive" => 1,
+                "url" => $url
+            )
+        );
+
         $view_data->products = $this->products_model->get_all(
           array(
-              "isActive" => 1
-          ), "rank ASC"
+              "isActive" => 1,
+              "id !=" => $view_data->product->id
+          ), "rand()", array("start" => 0, "count" =>3)
         );
 
         //echo get_product_cover_image(46);die();

@@ -155,15 +155,9 @@
                             <!-- main start -->
                             <!-- ================ -->
                             <div class="main col-lg-8">
-                                <h1 class="title">Product Title</h1>
+                                <h1 class="title"><?php echo $product->title;?></h1>
                                 <div class="separator-2"></div>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque sed, quidem quis praesentium, ut unde. Quae sed, incidunt laudantium nesciunt, optio corporis quod earum pariatur omnis illo saepe numquam suscipit, nemo placeat dignissimos eius mollitia et quas officia doloremque ipsum labore rem deserunt vero! Magnam totam delectus accusantium voluptas et, tempora quos atque, fugiat, obcaecati voluptatibus commodi illo voluptates dolore nemo quo soluta quis.</p>
-                                <p>Molestiae sed enim laboriosam atque delectus voluptates rerum nostrum sapiente obcaecati molestias quasi optio exercitationem, voluptate quis consequatur libero incidunt, in, quod. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos nobis officiis, autem earum tenetur quidem. Quae non dicta earum. Ipsum autem eaque cum dolor placeat corporis quisquam dolorum at nesciunt.</p>
-                                <h3 class="mt-3">Client Testimonial</h3>
-                                <blockquote class="margin-clear">
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius, magni, eos! Dignissimos voluptatum sequi ea sunt, nisi, doloribus facere asperiores dolorem quos laboriosam porro, velit in pariatur necessitatibus. Quisquam, mollitia!</p>
-                                    <footer><cite title="Source Title">Happy Client </cite></footer>
-                                </blockquote>
+                                <p><?php echo $product->description;?></p>
                             </div>
                             <!-- main end -->
 
@@ -253,7 +247,7 @@
                                         <div class="body">
                                             <p class="small mb-10 text-muted"><i class="icon-calendar"></i><?php echo getReadableDate($product->createdAt);?></p>
                                             <p><?php echo character_limiter(strip_tags($product->description),25); ?></p>
-                                            <a href="<?php echo base_url("product-detail")?>" class="btn btn-default btn-sm btn-hvr hvr-sweep-to-right margin-clear">Read More<i class="fa fa-arrow-right pl-10"></i></a>
+                                            <a href="<?php echo base_url("product-detail/$product->url")?>" class="btn btn-default btn-sm btn-hvr hvr-sweep-to-right margin-clear">Read More<i class="fa fa-arrow-right pl-10"></i></a>
                                         </div>
                                     </div>
                                 </div>
