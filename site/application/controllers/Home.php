@@ -30,7 +30,7 @@ class Home extends CI_Controller{
           ), "rank ASC"
         );
 
-        //echo get_product_cover_image(46);die();
+        //echo get_product_cover_image(56);die();
         //print_r($view_data->products); die();
 
         $view_data->view_folder = "product_list_view";

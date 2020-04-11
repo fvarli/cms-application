@@ -12,10 +12,16 @@ class Products_model extends CI_Model {
     //get all record
     public function get_all($where = array(), $order = "id ASC", $limit = array("count" =>0, "start" => 0))
     {
-        $this->db->where($where)->order_by($order);
+        return $this
+            ->db
+            ->where($where)
+            ->get($this->tableName)->result();
+
+        // TODO test later limit section - lecture 175
+       /* $this->db->where($where)->order_by($order);
         if(!empty($limit))
             $this->db->limit($limit["count"], $limit["start"]);
-        return $this->db->get($this->tableName)->result();
+        return $this->db->get($this->tableName)->result();*/
     }
 
     public function get_row($where = array())
