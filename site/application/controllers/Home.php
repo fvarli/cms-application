@@ -43,6 +43,7 @@ class Home extends CI_Controller{
         $view_data = new stdClass();
 
         $this->load->model("products_model");
+        $this->load->model("products_image_model");
         $view_data->view_folder = "product_view";
 
         $this->load->helper("tools");
@@ -55,7 +56,15 @@ class Home extends CI_Controller{
             )
         );
 
-        $view_data->products = $this->products_model->get_all(
+        $view_data->product_images = $this->products_image_model->get_all(
+            array(
+                "isActive" => 1,
+                "product_id" => $view_data->product->id
+            ), "rank ASC"
+        );
+        //print_r($view_data->product_images); die();
+
+        $view_data->other_products = $this->products_model->get_all(
           array(
               "isActive" => 1,
               "id !=" => $view_data->product->id
