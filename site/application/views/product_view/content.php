@@ -247,7 +247,7 @@
                                         <div class="body">
                                             <p class="small mb-10 text-muted"><i class="icon-calendar"></i><?php echo getReadableDate($product->createdAt);?></p>
                                             <p><?php echo character_limiter(strip_tags($product->description),25); ?></p>
-                                            <a href="<?php echo base_url("product-detail/$product->url")?>" class="btn btn-default btn-sm btn-hvr hvr-sweep-to-right margin-clear">Read More<i class="fa fa-arrow-right pl-10"></i></a>
+                                            <a href="<?php echo base_url("product-detail/$product->url");?>" class="btn btn-default btn-sm btn-hvr hvr-sweep-to-right margin-clear">Read More<i class="fa fa-arrow-right pl-10"></i></a>
                                         </div>
                                     </div>
                                 </div>
