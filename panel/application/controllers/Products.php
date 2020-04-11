@@ -470,6 +470,7 @@ class Products extends CI_Controller{
         )
         );
 
+        // TODO update alert
         $delete = $this->product_image_model->deleteImage(
             array(
                 "id" => $id
@@ -477,9 +478,18 @@ class Products extends CI_Controller{
         );
 
         if($delete){
+            $alert = array(
+                "text" => "Image has been deleted!",
+                "type" => "success"
+            );
             unlink("uploads/$this->viewFolder/$fileName->img_url");
             redirect(base_url("products/update_existing_image/$parent_id"));
         }else{
+            $alert = array(
+                "text" => "Record couldn't delete!",
+                "type" => "error"
+            );
+            $this->session->set_flashdata("alert", $alert);
             redirect(base_url("products/update_existing_image/$parent_id"));
         }
 

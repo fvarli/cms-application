@@ -1,6 +1,6 @@
 <?php
 
-class Product_model extends CI_Model {
+class Products_model extends CI_Model {
 
     public $tableName = "products";
 
