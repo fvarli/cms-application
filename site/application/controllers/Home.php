@@ -81,7 +81,7 @@ class Home extends CI_Controller{
     {
         $view_data = new stdClass();
 
-        $this->load->model("products_model");
+        $this->load->model("portfolios_model");
 
         $this->load->helper("tools");
         $this->load->helper("text");
@@ -93,7 +93,7 @@ class Home extends CI_Controller{
         );
 
         //echo get_product_cover_image(56);die();
-        print_r($view_data->portfolios); die();
+        //print_r($view_data->portfolios); die();
 
         $view_data->view_folder = "portfolio_list_view";
 
