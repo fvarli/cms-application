@@ -71,7 +71,7 @@
                                             <a href="index.html" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-expanded="false" href="#">About Us</a>
                                             <ul class="dropdown-menu">
                                                 <li ><a href="features-headers-default.html">About Us</a></li>
-                                                <li ><a href="features-headers-default-dark.html">Portfolio</a></li>
+                                                <li ><a href="<?php echo base_url("portfolios")?>">Portfolio</a></li>
                                                 <li ><a href="features-headers-default-dark.html">News</a></li>
                                                 <li ><a href="features-headers-default-dark.html">References</a></li>
                                             </ul>

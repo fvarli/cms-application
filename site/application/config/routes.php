@@ -56,3 +56,4 @@ $route['translate_uri_dashes'] = FALSE;
 $route["products"] = "home/product_list";
 $route["product-detail/(:any)"] = "home/product_detail/$1";
 
+$route["portfolios"] = "home/portfolio_list";
