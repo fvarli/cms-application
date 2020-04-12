@@ -15,9 +15,9 @@
                             $image = get_product_cover_image($product->id);
                             $image = ($image) ? base_url("panel/uploads/products_view/$image") : base_url("assets/images/portfolio-1.jpg");
                         ?>
-                        <img src="<?php echo $image;?>" alt="">
+                        <img src="<?php echo $image;?>" alt="<?php echo $product->title;?>">
                         <div class="overlay-bottom text-left">
-                            <p class="lead margin-clear"><?php // echo $product->title;?></p>
+                            <p class="lead margin-clear"><?php echo $product->title;?></p>
                         </div>
                     </div>
                     <div class="body">

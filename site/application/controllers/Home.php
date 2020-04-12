@@ -99,4 +99,45 @@ class Home extends CI_Controller{
 
         $this->load->view($view_data->view_folder, $view_data);
     }
+
+    public function portfolio_detail($portfolio_url = "")
+    {
+
+        $view_data = new stdClass();
+
+        $this->load->model("portfolios_model");
+        $this->load->model("portfolios_image_model");
+        $view_data->view_folder = "portfolio_view";
+
+        $this->load->helper("tools");
+        $this->load->helper("text");
+
+        $view_data->portfolio = $this->portfolios_model->get_row(
+            array(
+                "isActive" => 1,
+                "portfolio_url" => $portfolio_url
+            )
+        );
+        //print_r($view_data->portfolio);die();
+
+        $view_data->portfolio_images = $this->portfolios_image_model->get_all(
+            array(
+                "isActive" => 1,
+                "portfolio_id" => $view_data->portfolio->id
+            ), "rank ASC"
+        );
+        //print_r($view_data->portfolio_images); die();
+
+        $view_data->other_portfolio= $this->portfolios_model->get_all(
+            array(
+                "isActive" => 1,
+                "id !=" => $view_data->portfolio->id
+            ), "rand()", array("start" => 0, "count" =>3)
+        );
+
+        //echo get_product_cover_image(46);die();
+        //print_r($view_data->other_portfolio); die();
+
+        $this->load->view($view_data->view_folder, $view_data);
+    }
 }

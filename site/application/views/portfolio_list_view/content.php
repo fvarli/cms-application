@@ -9,9 +9,12 @@
             <!-- ================ -->
             <div class="main col-12">
 
+                <br>
+                <br>
+
                 <!-- page-title start -->
                 <!-- ================ -->
-                <h1 class="page-title">Portfolio List - Large Images</h1>
+                <h1 class="page-title">PORTFOLIO LIST - LARGE IMAGES</h1>
                 <div class="separator-2"></div>
                 <!-- page-title end -->
                 <p class="lead">You can see one of our workings for you below.</p>
@@ -21,9 +24,14 @@
                     <div class="row">
                         <div class="col-md-6 col-lg-4 col-xl-3">
                             <div class="overlay-container">
-                                <img src="<?php echo base_url("assets/images"); ?>/portfolio-1.jpg" alt="">
+
+                                <?php
+                                $image = get_portfolio_cover_image($portfolio->id);
+                                $image = ($image) ? base_url("panel/uploads/portfolios_view/$image") : base_url("assets/images/portfolio-1.jpg");
+                                ?>
+                                <img src="<?php echo $image;?>" alt="<?php echo $portfolio->title;?>">
                                 <div class="overlay-to-top">
-                                    <p class="small margin-clear"><em>Some info <br> Lorem ipsum dolor sit</em></p>
+                                    <p class="small margin-clear"><em><?php echo $portfolio->title;?></em></p>
                                 </div>
                             </div>
                         </div>
@@ -31,10 +39,14 @@
                             <div class="body">
                                 <h3 class="title"><a href="portfolio-item.html"><?php echo $portfolio->title;?></a></h3>
                                 <p class="small mb-10"><i class="icon-calendar"></i><?php echo getReadableDate($portfolio->finishedAt); // TODO check date format
-                                    // ((!empty($portfolio->finishedAt) && $portfolio->finishedAt != "0000-00-00 00:00:00" && $portfolio->finishedAt != "1970-01-01 00:00:00")? date("d/m/Y",strtotime($portfolio->finishedAt)):"");?><i class="pl-10 icon-tag-1"></i> Web Design</p>
+                                    // ((!empty($portfolio->finishedAt) && $portfolio->finishedAt != "0000-00-00 00:00:00" && $portfolio->finishedAt != "1970-01-01 00:00:00")? date("d/m/Y",strtotime($portfolio->finishedAt)):"");?>
+                                    <?php $portfolio_category = get_portfolio_category_title($portfolio->category_id);?>
+                                    <?php if($portfolio_category) {?>
+                                    <i class="pl-10 icon-tag-1"></i><?php echo $portfolio_category;?></p>
+                                <?php } ?>
                                 <div class="separator-2"></div>
-                                <p class="mb-10">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam atque ipsam nihialal. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam laudantium, provident culpa saepe.</p>
-                                <a href="portfolio-item.html" class="btn btn-default btn-hvr hvr-shutter-out-horizontal margin-clear">Read More<i class="fa fa-arrow-right pl-10"></i></a>
+                                <p class="mb-10"><?php echo strip_tags($portfolio->description);?></p>
+                                <a href="<?php echo base_url("portfolio-detail/$portfolio->portfolio_url");?>" class="btn btn-default btn-hvr hvr-shutter-out-horizontal margin-clear">Read More<i class="fa fa-arrow-right pl-10"></i></a>
                             </div>
                         </div>
                     </div>
