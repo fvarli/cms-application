@@ -87,7 +87,7 @@
                                         <!-- mega-menu start products-->
                                         <li class="active"><a href="<?php echo base_url("products")?>" class="nav-link" id="first-dropdown">Products</a></li>
                                         <!-- mega-menu start courses-->
-                                        <li class="active"><a href="index.html" class="nav-link" id="first-dropdown">Courses</a></li>
+                                        <li class="active"><a href="<?php echo base_url("courses")?>" class="nav-link" id="first-dropdown">Courses</a></li>
                                         <!-- mega-menu start brands-->
                                         <li class="active"><a href="index.html" class="nav-link" id="first-dropdown">Brands</a></li>
                                         <!-- mega-menu start contact-->

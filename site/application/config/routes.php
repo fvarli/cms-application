@@ -58,3 +58,6 @@ $route["product-detail/(:any)"] = "home/product_detail/$1";
 
 $route["portfolios"] = "home/portfolio_list";
 $route["portfolio-detail/(:any)"] = "home/portfolio_detail/$1";
+
+$route["courses"] = "home/course_list";
+$route["course-detail/(:any)"] = "home/course_detail/$1";

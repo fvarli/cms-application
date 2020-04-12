@@ -172,7 +172,7 @@
                 <!-- ================ -->
                 <section class="section pv-40 clearfix">
                     <div class="container">
-                        <h3 class="mt-3">Related <strong>portfolios</strong></h3>
+                        <h3 class="mt-3">Related <strong>Portfolios</strong></h3>
                         <div class="row grid-space-10">
                             <?php foreach ($other_portfolios as $portfolio) { ?>
 

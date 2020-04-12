@@ -7,6 +7,9 @@ class Home extends CI_Controller{
     {
         parent::__construct();
         $this->view_folder = "homepage";
+
+        $this->load->helper("tools");
+        $this->load->helper("text");
         
     }
 
@@ -20,9 +23,6 @@ class Home extends CI_Controller{
         $view_data = new stdClass();
 
         $this->load->model("products_model");
-
-        $this->load->helper("tools");
-        $this->load->helper("text");
 
         $view_data->products = $this->products_model->get_all(
           array(
@@ -46,8 +46,6 @@ class Home extends CI_Controller{
         $this->load->model("products_image_model");
         $view_data->view_folder = "product_view";
 
-        $this->load->helper("tools");
-        $this->load->helper("text");
 
         $view_data->product = $this->products_model->get_row(
             array(
@@ -83,9 +81,6 @@ class Home extends CI_Controller{
 
         $this->load->model("portfolios_model");
 
-        $this->load->helper("tools");
-        $this->load->helper("text");
-
         $view_data->portfolios = $this->portfolios_model->get_all(
             array(
                 "isActive" => 1
@@ -109,9 +104,6 @@ class Home extends CI_Controller{
         $this->load->model("portfolios_image_model");
         $view_data->view_folder = "portfolio_view";
 
-        $this->load->helper("tools");
-        $this->load->helper("text");
-
         $view_data->portfolio = $this->portfolios_model->get_row(
             array(
                 "isActive" => 1,
@@ -128,7 +120,7 @@ class Home extends CI_Controller{
         );
         //print_r($view_data->portfolio_images); die();
 
-        $view_data->other_portfolio= $this->portfolios_model->get_all(
+        $view_data->other_portfolios= $this->portfolios_model->get_all(
             array(
                 "isActive" => 1,
                 "id !=" => $view_data->portfolio->id
@@ -137,6 +129,26 @@ class Home extends CI_Controller{
 
         //echo get_product_cover_image(46);die();
         //print_r($view_data->other_portfolio); die();
+
+        $this->load->view($view_data->view_folder, $view_data);
+    }
+
+    public function course_list()
+    {
+        $view_data = new stdClass();
+
+        $this->load->model("courses_model");
+
+        $view_data->courses = $this->courses_model->get_all(
+            array(
+                "isActive" => 1
+            ), "event_date ASC"
+        );
+
+        //echo get_product_cover_image(56);die();
+        //print_r($view_data->courses); die();
+
+        $view_data->view_folder = "course_list_view";
 
         $this->load->view($view_data->view_folder, $view_data);
     }
