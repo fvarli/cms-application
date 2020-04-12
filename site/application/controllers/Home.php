@@ -86,14 +86,14 @@ class Home extends CI_Controller{
         $this->load->helper("tools");
         $this->load->helper("text");
 
-        $view_data->products = $this->products_model->get_all(
+        $view_data->portfolios = $this->portfolios_model->get_all(
             array(
                 "isActive" => 1
             ), "rank ASC"
         );
 
         //echo get_product_cover_image(56);die();
-        //print_r($view_data->products); die();
+        print_r($view_data->portfolios); die();
 
         $view_data->view_folder = "portfolio_list_view";
 
