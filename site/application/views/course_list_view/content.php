@@ -38,7 +38,7 @@
                                     // ((!empty($portfolio->finishedAt) && $portfolio->finishedAt != "0000-00-00 00:00:00" && $portfolio->finishedAt != "1970-01-01 00:00:00")? date("d/m/Y",strtotime($portfolio->finishedAt)):"");?>
                                 <div class="separator-2"></div>
                                 <p class="mb-10"><?php echo strip_tags($course->description);?></p>
-                                <a href="<?php echo base_url("portfolio-detail/$course->url");?>" class="btn btn-default btn-hvr hvr-shutter-out-horizontal margin-clear">Read More<i class="fa fa-arrow-right pl-10"></i></a>
+                                <a href="<?php echo base_url("course-detail/$course->url");?>" class="btn btn-default btn-hvr hvr-shutter-out-horizontal margin-clear">Read More<i class="fa fa-arrow-right pl-10"></i></a>
                             </div>
                         </div>
                     </div>

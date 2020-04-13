@@ -152,4 +152,34 @@ class Home extends CI_Controller{
 
         $this->load->view($view_data->view_folder, $view_data);
     }
+
+    public function course_detail($url = "")
+    {
+        // echo $url; die();
+
+        $view_data = new stdClass();
+
+        $this->load->model("courses_model");
+        $view_data->view_folder = "course_view";
+
+        $view_data->course = $this->courses_model->get_row(
+            array(
+                "isActive" => 1,
+                "url" => $url
+            )
+        );
+        //print_r($view_data->course);die();
+
+
+        $view_data->other_courses = $this->courses_model->get_all(
+            array(
+                "isActive" => 1,
+                "id !=" => $view_data->course->id
+            ), "rand()", array("start" => 0, "count" =>3)
+        );
+
+        //print_r($view_data->other_courses); die();
+
+        $this->load->view($view_data->view_folder, $view_data);
+    }
 }
