@@ -73,7 +73,7 @@
                                                 <li ><a href="features-headers-default.html">About Us</a></li>
                                                 <li ><a href="<?php echo base_url("portfolios")?>">Portfolio</a></li>
                                                 <li ><a href="features-headers-default-dark.html">News</a></li>
-                                                <li ><a href="features-headers-default-dark.html">References</a></li>
+                                                <li ><a href="<?php echo base_url("references")?>">References</a></li>
                                             </ul>
                                         </li>
                                         <li class="nav-item dropdown">
@@ -89,7 +89,7 @@
                                         <!-- mega-menu start courses-->
                                         <li class="active"><a href="<?php echo base_url("courses")?>" class="nav-link" id="first-dropdown">Courses</a></li>
                                         <!-- mega-menu start brands-->
-                                        <li class="active"><a href="index.html" class="nav-link" id="first-dropdown">Brands</a></li>
+                                        <li class="active"><a href="<?php echo base_url("brands")?>" class="nav-link" id="first-dropdown">Brands</a></li>
                                         <!-- mega-menu start contact-->
                                         <li class="active"><a href="index.html" class="nav-link" id="first-dropdown">Contact</a></li>
                                     </ul>

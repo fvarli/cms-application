@@ -182,4 +182,42 @@ class Home extends CI_Controller{
 
         $this->load->view($view_data->view_folder, $view_data);
     }
+
+    public function reference_list()
+    {
+        $view_data = new stdClass();
+
+        $this->load->model("references_model");
+
+        $view_data->references = $this->references_model->get_all(
+            array(
+                "isActive" => 1
+            ),
+        );
+
+        //print_r($view_data->references); die();
+
+        $view_data->view_folder = "reference_list_view";
+
+        $this->load->view($view_data->view_folder, $view_data);
+    }
+
+    public function brand_list()
+    {
+        $view_data = new stdClass();
+
+        $this->load->model("brands_model");
+
+        $view_data->brands = $this->brands_model->get_all(
+            array(
+                "isActive" => 1
+            ),
+        );
+
+        //print_r($view_data->brands); die();
+
+        $view_data->view_folder = "brand_list_view";
+
+        $this->load->view($view_data->view_folder, $view_data);
+    }
 }
