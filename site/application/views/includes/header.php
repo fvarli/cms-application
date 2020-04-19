@@ -93,8 +93,6 @@
                                         <li class="active"><a href="<?php echo base_url("courses")?>" class="nav-link" id="first-dropdown">Courses</a></li>
                                         <!-- mega-menu start brands-->
                                         <li class="active"><a href="<?php echo base_url("brands")?>" class="nav-link" id="first-dropdown">Brands</a></li>
-                                        <!-- mega-menu start contact-->
-                                        <li class="active"><a href="index.html" class="nav-link" id="first-dropdown">Contact</a></li>
                                     </ul>
                                     <!-- main-menu end -->
                                 </div>
@@ -108,7 +106,7 @@
                 <div class="col-auto hidden-md-down pl-0 pl-md-1">
                     <!-- header dropdown buttons -->
                     <div class="header-dropdown-buttons">
-                        <a href="page-contact.html" class="btn btn-sm btn-default">Contact Us <i class="fa fa-envelope-o pl-1"></i></a>
+                        <a href="<?php echo base_url("contact")?>" class="btn btn-sm btn-default">Contact Us <i class="fa fa-envelope-o pl-1"></i></a>
                     </div>
                     <!-- header dropdown buttons end-->
                 </div>

@@ -255,4 +255,77 @@ class Home extends CI_Controller{
 
         $this->load->view($view_data->view_folder, $view_data);
     }
+
+    public function contact()
+    {
+        $view_data = new stdClass();
+
+        $view_data->view_folder = "contact_view";
+
+        $this->load->helper("captcha");
+
+        $config = array(
+            "word"          => '',
+            "img_path"      => 'captcha/',
+            "img_url"       =>base_url("captcha"),
+            "font_path"     => 'C:\xampp\htdocs\cms-application\site\fonts\corbel.ttf',
+            "img_width"     => 150,
+            "img_height"    => 50,
+            "expiration"    => 7200,
+            "word_length"   => 5,
+            "font_size"     => 20,
+            "img_id"        => 'captcha_img',
+            "pool"          => '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ',
+            "colors"        => array(
+                'background' => array(56,255,45),
+                'border'     => array(255,255,255),
+                'text'       => array(0,0,0),
+                'grid'       => array(255,40,40)
+            )
+        );
+
+        $view_data->captcha = create_captcha($config);
+
+        //print_r($captcha); die();
+
+        $this->session->set_userdata("captcha", $view_data->captcha["word"]);
+
+        $this->load->view($view_data->view_folder, $view_data);
+    }
+
+    public function send_contact_message()
+    {
+        $this->load->library("form_validation");
+
+        $this->form_validation->set_rules("name", "name", "trim|required");
+        $this->form_validation->set_rules("email", "email", "trim|required|valid_email");
+        $this->form_validation->set_rules("subject", "subject", "trim|required");
+        $this->form_validation->set_rules("message", "message", "trim|required");
+        $this->form_validation->set_rules("captcha", "captcha", "trim|required");
+
+        if($this->form_validation->run() === FALSE){
+            //TODO add alert
+            redirect(base_url("contact"));
+        }else{
+            if($this->session->userdata("captcha") == $this->input->post("captcha")){
+
+                $name = $this->input->post("name");
+                $email = $this->input->post("email");
+                $subject = $this->input->post("subject");
+                $message = $this->input->post("message");
+
+                $email_message = "A new message from {$name} <br> <b>Message: </b> {$message} <br> <b>E-mail: </b> {$email}";
+
+                if(send_mail("", "Site Contact Message | $subject", $email_message)){
+                    echo "success";
+                }else{
+                    echo "error";
+                }
+
+            }else{
+                //TODO add alert
+                redirect(base_url("contact"));
+            }
+        }
+    }
 }
