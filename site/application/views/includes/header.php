@@ -1,3 +1,5 @@
+<?php $settings = get_settings();?>
+
 <!-- header-container start -->
 <div class="header-container">
     <!-- header start -->
@@ -23,7 +25,7 @@
 
                         <!-- name-and-slogan -->
                         <div class="site-slogan">
-                            Multipurpose HTML5 Template
+                            <?php echo $settings->slogan;?>
                         </div>
 
                     </div>
@@ -70,10 +72,11 @@
                                         <li class="nav-item dropdown">
                                             <a href="index.html" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-expanded="false" href="#">About Us</a>
                                             <ul class="dropdown-menu">
-                                                <li ><a href="features-headers-default.html">About Us</a></li>
+                                                <li ><a href="<?php echo base_url("about-us")?>">About Us</a></li>
                                                 <li ><a href="<?php echo base_url("portfolios")?>">Portfolio</a></li>
                                                 <li ><a href="features-headers-default-dark.html">News</a></li>
                                                 <li ><a href="<?php echo base_url("references")?>">References</a></li>
+                                                <li ><a href="<?php echo base_url("services")?>">Services</a></li>
                                             </ul>
                                         </li>
                                         <li class="nav-item dropdown">

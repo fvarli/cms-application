@@ -1,3 +1,5 @@
+<?php $settings = get_settings();?>
+
 <!-- footer start (Add "dark" class to #footer in order to enable dark footer) -->
 <!-- ================ -->
 <footer id="footer" class="clearfix dark">
@@ -11,7 +13,7 @@
                     <div class="col-lg-3">
                         <div class="footer-content">
                             <div class="logo-footer"><img id="logo-footer" src="<?php echo base_url("assets/images");?>/logo_purple.png" alt=""></div>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Necessitatibus illo vel dolorum soluta consectetur doloribus sit. Delectus non tenetur odit dicta vitae debitis suscipit doloribus. Ipsa, aut voluptas quaerat... <a href="page-about.html">Learn More<i class="fa fa-long-arrow-right pl-1"></i></a></p>
+                            <p><?php echo character_limiter(strip_tags($settings->about_us),150)?>  <a href="<?php echo base_url("about-us");?>">Learn More<i class="fa fa-long-arrow-right pl-1"></i></a></p>
                             <div class="separator-2"></div>
                             <nav>
                                 <ul class="nav flex-column">
@@ -144,21 +146,33 @@
                     </div>
                     <div class="col-lg-3">
                         <div class="footer-content">
-                            <h2 class="title">Find Us</h2>
+                            <h2 class="title">Contant Us</h2>
                             <div class="separator-2"></div>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium odio voluptatem necessitatibus illo vel dolorum soluta.</p>
+                            <p><?php echo $settings->slogan;?></p>
                             <ul class="social-links circle animated-effect-1">
-                                <li class="facebook"><a target="_blank" href="http://www.facebook.com"><i class="fa fa-facebook"></i></a></li>
-                                <li class="twitter"><a target="_blank" href="http://www.twitter.com"><i class="fa fa-twitter"></i></a></li>
-                                <li class="googleplus"><a target="_blank" href="http://plus.google.com"><i class="fa fa-google-plus"></i></a></li>
-                                <li class="linkedin"><a target="_blank" href="http://www.linkedin.com"><i class="fa fa-linkedin"></i></a></li>
-                                <li class="xing"><a target="_blank" href="http://www.xing.com"><i class="fa fa-xing"></i></a></li>
+
+                                <?php if($settings->facebook) { ?>
+                                    <li class="facebook"><a target="_blank" href="http://www.facebook.com/<?php echo $settings->facebook;?>"><i class="fa fa-facebook"></i></a></li>
+                                <?php } ?>
+
+                                <?php if($settings->twitter) { ?>
+                                    <li class="twitter"><a target="_blank" href="http://www.twitter.com/<?php echo $settings->twitter;?>"><i class="fa fa-twitter"></i></a></li>
+                                <?php } ?>
+
+                                <?php if($settings->instagram) { ?>
+                                    <li class="instagram"><a target="_blank" href="http://www.instagram.com/<?php echo $settings->instagram;?>"><i class="fa fa-instagram"></i></a></li>
+                                <?php } ?>
+
+                                <?php if($settings->linkedin) { ?>
+                                    <li class="linkedin"><a target="_blank" href="http://www.linkedin.com/<?php echo $settings->linkedin;?>"><i class="fa fa-linkedin"></i></a></li>
+                                <?php } ?>
+
                             </ul>
                             <div class="separator-2"></div>
                             <ul class="list-icons">
-                                <li><i class="fa fa-map-marker pr-2 text-default"></i> One infinity loop, 54100</li>
-                                <li><i class="fa fa-phone pr-2 text-default"></i> +00 1234567890</li>
-                                <li><a href="mailto:info@theproject.com"><i class="fa fa-envelope-o pr-2"></i>info@theproject.com</a></li>
+                                <li><i class="fa fa-map-marker pr-2 text-default"></i> <?php echo $settings->address;?></li>
+                                <li><i class="fa fa-phone pr-2 text-default"></i> <?php echo $settings->phone_1;?></li>
+                                <li><a href="mailto:<?php echo $settings->email;?>"><i class="fa fa-envelope-o pr-2"></i> <?php echo $settings->email;?></a></li>
                             </ul>
                         </div>
                     </div>
@@ -175,7 +189,7 @@
             <div class="subfooter-inner">
                 <div class="row">
                     <div class="col-md-12">
-                        <p class="text-center">Copyright © 2017 The Project by <a target="_blank" href="http://htmlcoder.me">HtmlCoder</a>. All Rights Reserved</p>
+                        <p class="text-center">Copyright © <?php echo date("Y") . " " . $settings->company_name;?> by <a target="_blank" href="https://ferzendervarli.com">Ferzender Varli</a>. All Rights Reserved</p>
                     </div>
                 </div>
             </div>

@@ -15,6 +15,7 @@ class Home extends CI_Controller{
 
     public function index()
     {
+        //print_r(get_settings());die();
         echo $this->view_folder;
     }
 
@@ -217,6 +218,40 @@ class Home extends CI_Controller{
         //print_r($view_data->brands); die();
 
         $view_data->view_folder = "brand_list_view";
+
+        $this->load->view($view_data->view_folder, $view_data);
+    }
+
+    public function service_list()
+    {
+        $view_data = new stdClass();
+
+        $this->load->model("services_model");
+
+        $view_data->services = $this->services_model->get_all(
+            array(
+                "isActive" => 1
+            ),
+            );
+
+        //print_r($view_data->services); die();
+
+        $view_data->view_folder = "service_list_view";
+
+        $this->load->view($view_data->view_folder, $view_data);
+    }
+
+    public function about_us()
+    {
+        $view_data = new stdClass();
+
+        $this->load->model("settings_model");
+
+        $view_data->settings = $this->settings_model->get_row();
+
+        //print_r($view_data->settings); die();
+
+        $view_data->view_folder = "about_us_view";
 
         $this->load->view($view_data->view_folder, $view_data);
     }
