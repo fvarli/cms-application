@@ -74,7 +74,7 @@
                                             <ul class="dropdown-menu">
                                                 <li ><a href="<?php echo base_url("about-us")?>">About Us</a></li>
                                                 <li ><a href="<?php echo base_url("portfolios")?>">Portfolio</a></li>
-                                                <li ><a href="features-headers-default-dark.html">News</a></li>
+                                                <li ><a href="<?php echo base_url("news")?>">News</a></li>
                                                 <li ><a href="<?php echo base_url("references")?>">References</a></li>
                                                 <li ><a href="<?php echo base_url("services")?>">Services</a></li>
                                             </ul>

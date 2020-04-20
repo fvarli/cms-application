@@ -363,4 +363,23 @@ class Home extends CI_Controller{
         redirect(base_url("contact"));
 
     }
+
+    public function get_news()
+    {
+        $view_data = new stdClass();
+
+        $this->load->model("news_model");
+
+        $view_data->news = $this->news_model->get_all(
+            array(
+                "isActive" => 1
+            ), "rank ASC"
+        );
+
+        //print_r($view_data->news); die();
+
+        $view_data->view_folder = "news_list_view";
+
+        $this->load->view($view_data->view_folder, $view_data);
+    }
 }
