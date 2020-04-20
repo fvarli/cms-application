@@ -317,8 +317,10 @@ class Home extends CI_Controller{
                 $email_message = "A new message from {$name} <br> <b>Message: </b> {$message} <br> <b>E-mail: </b> {$email}";
 
                 if(send_mail("", "Site Contact Message | $subject", $email_message)){
+                    //TODO add alert
                     echo "success";
                 }else{
+                    //TODO add alert
                     echo "error";
                 }
 
@@ -327,5 +329,38 @@ class Home extends CI_Controller{
                 redirect(base_url("contact"));
             }
         }
+    }
+
+    public function make_me_member()
+    {
+        $this->load->library("form_validation");
+        $this->form_validation->set_rules("subscribe_email", "email", "trim|required|valid_email");
+
+        if($this->form_validation->run() === FALSE){
+            //TODO add alert
+            redirect(base_url("contact"));
+        }else{
+          $this->load->model("members_model");
+
+          $this->members_model->add_db(
+            $insert = array(
+                "email" => $this->input->post("subscribe_email"),
+                "ip_address" => $this->input->post("ip_address"),
+                "isActive" => 1,
+                "createdAt" => date("Y-m-d H:i:s")
+            )
+          );
+
+          if($insert){
+              //TODO add alert
+          }else{
+              //TODO add alert
+
+          }
+
+        }
+
+        redirect(base_url("contact"));
+
     }
 }

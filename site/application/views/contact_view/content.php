@@ -132,10 +132,11 @@
                             <h2 class="title">SUBSCRIBE TO OUR NEWSLETTER</h2>
                             <p>Join Our Newsletter</p>
                             <div class="separator"></div>
-                            <form class="form-inline margin-clear d-flex justify-content-center">
+                            <form class="form-inline margin-clear d-flex justify-content-center" action="<?php echo base_url("subscribe")?>" method="post">
                                 <div class="form-group has-feedback">
-                                    <label class="sr-only" for="subscribe2">Email address</label>
+                                    <label class="sr-only" for="subscribe_email">Email address</label>
                                     <input type="email" class="form-control form-control-lg" id="subscribe2" placeholder="Enter email" name="subscribe_email" required="">
+                                    <input type="hidden" name="<?php echo $this->security->get_csrf_token_name();?>" value="<?php echo $this->security->get_csrf_hash();?>">
                                     <i class="fa fa-envelope form-control-feedback"></i>
                                 </div>
                                 <button type="submit" class="btn btn-lg btn-gray-transparent btn-animated margin-clear ml-3">Submit <i class="fa fa-send"></i></button>
