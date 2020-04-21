@@ -1,3 +1,4 @@
+<?php ?>
 <div role="tabpanel" class="tab-pane fade" id="tab-7">
 
     <div class="form-group image_upload_container">

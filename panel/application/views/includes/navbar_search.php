@@ -1,3 +1,4 @@
+<?php ?>
 <div id="navbar-search" class="navbar-search collapse">
     <div class="navbar-search-inner">
         <form action="#">

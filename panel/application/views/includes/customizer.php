@@ -1,3 +1,4 @@
+<?php ?>
 <div id="app-customizer" class="app-customizer">
     <a href="javascript:void(0)"
        class="app-customizer-toggle theme-color"
