@@ -62,6 +62,9 @@ $route["portfolio-detail/(:any)"] = "home/portfolio_detail/$1";
 $route["courses"] = "home/course_list";
 $route["course-detail/(:any)"] = "home/course_detail/$1";
 
+$route["news"]          = "home/get_news";
+$route["new/(:any)"]    = "home/news/$1";
+
 $route["references"]    = "home/reference_list";
 $route["brands"]        = "home/brand_list";
 $route["services"]      = "home/service_list";
@@ -69,4 +72,3 @@ $route["about-us"]      = "home/about_us";
 $route["contact"]       = "home/contact";
 $route["send-message"]  = "home/send_contact_message";
 $route["subscribe"]     = "home/make_me_member";
-$route["news"]          = "home/get_news";

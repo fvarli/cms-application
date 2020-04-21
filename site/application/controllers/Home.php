@@ -382,4 +382,36 @@ class Home extends CI_Controller{
 
         $this->load->view($view_data->view_folder, $view_data);
     }
+
+    public function news($url)
+    {
+
+        if($url != ""){
+
+            $view_data = new stdClass();
+
+            $view_data->view_folder = "news_view";
+
+            $this->load->model("news_model");
+
+            $news = $this->news_model->get_row(
+                array(
+                    "isActive" => 1,
+                    "url"      => $url
+                ), "rank ASC"
+            );
+
+            if($news){
+                $view_data->news = $news;
+                $this->load->view($view_data->view_folder, $view_data);
+            }else{
+                //TODO add alert
+            }
+
+
+        }else{
+            //TODO add alert
+        }
+
+    }
 }
