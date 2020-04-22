@@ -367,21 +367,21 @@ class Home extends CI_Controller{
     public function get_news()
     {
         $view_data = new stdClass();
-
+        $view_data->view_folder = "news_list_view";
         $this->load->model("news_model");
 
         $view_data->news = $this->news_model->get_all(
             array(
                 "isActive" => 1
-            ), "rank ASC"
+            ), "rank DESC"
         );
 
         //print_r($view_data->news); die();
 
-        $view_data->view_folder = "news_list_view";
-
         $this->load->view($view_data->view_folder, $view_data);
     }
+
+
 
     public function news($url)
     {
@@ -398,11 +398,35 @@ class Home extends CI_Controller{
                 array(
                     "isActive" => 1,
                     "url"      => $url
-                ), "rank ASC"
+                )
             );
 
             if($news){
                 $view_data->news = $news;
+
+
+
+                $view_data->recent_news_list = $this->news_model->get_all(
+                    array(
+                        "isActive" => 1,
+                        "id !="    => $news->id
+                    ), "rank DESC",array("count" => 1,"start" => 0)
+                );
+
+                $view_count = $news->view_count + 1;
+
+                $this->news_model->update_db(
+                    array(
+                        "id" => $news->id
+                    ),
+                    array(
+                        "view_count" => $view_count
+                    )
+                );
+
+                $view_data->news->view_count = $view_count;
+                $view_data->opengraph = true;
+
                 $this->load->view($view_data->view_folder, $view_data);
             }else{
                 //TODO add alert

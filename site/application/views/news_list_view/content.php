@@ -11,7 +11,7 @@
 
                 <!-- page-title start -->
                 <!-- ================ -->
-                <h1 class="page-title">News Lis</h1>
+                <h1 class="page-title">News List</h1>
                 <div class="separator-2"></div>
                 <!-- page-title end -->
 
@@ -52,6 +52,7 @@
                           <i class="icon-calendar"></i>
                           <span class="month"><?php echo $new->createdAt;?></span>
                         </span>
+                                    <span class="comments"><i class="icon-eye"></i> <a href="#"><?php echo $new->view_count; ?> Views</a></span>
                                     <span class="submitted"><i class="icon-user-1"></i> by <a href="#">John Doe</a></span>
 
                                 </div>

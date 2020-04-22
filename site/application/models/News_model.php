@@ -10,8 +10,18 @@ class News_model extends CI_Model {
     }
 
     //get all record
-    public function get_all($where = array(), $order = "id ASC")
+    public function get_all($where = array(), $order = "id ASC", $limit = array("count" => 0, "start" => 0))
     {
+        /*
+         //TODO check the limit feature
+
+        $this->db->where($where)->order_by($order);
+
+        if(!empty($limit))
+            $this->db->limit($limit["count"], $limit["start"]);
+
+        return $this->db->get($this->tableName)->result();
+        */
         $res = $this
                 ->db
                 ->where($where)
@@ -19,6 +29,7 @@ class News_model extends CI_Model {
                 ->get($this->tableName)->result();
         return $res;
     }
+
 
     public function get_row($where = array())
     {
