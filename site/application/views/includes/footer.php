@@ -9,6 +9,7 @@
     <div class="footer">
         <div class="container">
             <div class="footer-inner">
+                <!-- TODO update the section -->
                 <div class="row">
                     <div class="col-lg-3">
                         <div class="footer-content">

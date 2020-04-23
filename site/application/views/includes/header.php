@@ -49,7 +49,7 @@
 
                                     <!-- logo -->
                                     <div id="logo-mobile" class="logo">
-                                        <a href="<?php echo base_url("")?>"><img id="logo-img-mobile" src="images/logo_purple.png" alt="The Project"></a>
+                                        <a href="<?php echo base_url("")?>"><img id="logo-img-mobile" src="<?php echo base_url("assets/images");?>/logo_purple.png" alt="The Project"></a>
                                     </div>
 
                                     <!-- name-and-slogan -->
