@@ -44,7 +44,6 @@ function get_portfolio_category_title($id){
     return (empty($portfolio)) ? false : $portfolio->title;
 }
 
-
 function get_portfolio_cover_image($id){
     $t = &get_instance();
 
@@ -67,6 +66,7 @@ function get_portfolio_cover_image($id){
 
     return !empty($cover_image) ? $cover_image->img_url: "";
 }
+
 
 function get_settings(){
 
@@ -123,4 +123,18 @@ function send_mail($toEmail = "", $subject = "", $message = ""){
     $t->email->message($message);
 
     return $t->email->send();
+}
+
+function get_news_footer($where = array(), $order = "id ASC", $limit = array("count" => 3, "start" => 0)){
+
+    $t = &get_instance();
+
+    $t->load->model("news_model");
+
+    $t->db->where($where)->order_by($order);
+
+    if(!empty($limit))
+        $t->db->limit($limit["count"], $limit["start"]);
+
+    return $t->db->get("news")->result();
 }

@@ -111,6 +111,36 @@ class Services extends CI_Controller{
             $config["upload_path"]   = "uploads/$this->viewFolder/";
             $config["file_name"] = $file_name;
 
+
+            $this->load->library("simpleimagelib");
+
+
+
+
+            try {
+                // Create a new SimpleImage object
+                $simple_image = $this->simpleimagelib->get_simple_image_instance();
+
+                // Magic! ✨
+                $simple_image
+                    ->fromFile($_FILES["img_url"]["tmp_name"])                     // load image.jpg
+                    ->autoOrient()                              // adjust orientation based on exif data
+                    ->resize(320, 200)                          // resize to 320x200 pixels
+                    ->flip('x')                                 // flip horizontally
+                    ->colorize('DarkBlue')                      // tint dark blue
+                    ->border('black', 10)                       // add a 10 pixel black border
+                    //->overlay('watermark.png', 'bottom right')  // add a watermark image
+                    ->toFile('"uploads/$this->viewFolder/new-image.png', 'image/png')      // convert to PNG and save a copy to new-image.png
+                    ->toScreen();                               // output to the screen
+
+                // And much more! 💪
+            } catch(Exception $err) {
+                // Handle errors
+                echo $err->getMessage();
+            }
+
+
+            die();
             $this->load->library("upload", $config);
 
             $upload = $this->upload->do_upload("img_url");

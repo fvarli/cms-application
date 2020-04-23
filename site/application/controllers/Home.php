@@ -196,7 +196,7 @@ class Home extends CI_Controller{
         $view_data->references = $this->references_model->get_all(
             array(
                 "isActive" => 1
-            ),
+            )
         );
 
         //print_r($view_data->references); die();
@@ -215,7 +215,7 @@ class Home extends CI_Controller{
         $view_data->brands = $this->brands_model->get_all(
             array(
                 "isActive" => 1
-            ),
+            )
         );
 
         //print_r($view_data->brands); die();
@@ -234,8 +234,8 @@ class Home extends CI_Controller{
         $view_data->services = $this->services_model->get_all(
             array(
                 "isActive" => 1
-            ),
-            );
+            )
+        );
 
         //print_r($view_data->services); die();
 
@@ -409,7 +409,7 @@ class Home extends CI_Controller{
                     array(
                         "isActive" => 1,
                         "id !="    => $news->id
-                    ), "rank DESC",array("count" => 1,"start" => 0)
+                    ), "rank DESC",array("count" => 5,"start" => 0)
                 );
 
                 $view_count = $news->view_count + 1;
