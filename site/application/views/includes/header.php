@@ -20,7 +20,7 @@
 
                         <!-- logo -->
                         <div id="logo" class="logo">
-                            <a href="index.html"><img id="logo_img" src="<?php echo base_url("assets/images");?>/logo_purple.png" alt="The Project"></a>
+                            <a href="<?php echo base_url("")?>"><img id="logo_img" src="<?php echo base_url("assets/images");?>/logo_purple.png" alt="The Project"></a>
                         </div>
 
                         <!-- name-and-slogan -->
@@ -49,7 +49,7 @@
 
                                     <!-- logo -->
                                     <div id="logo-mobile" class="logo">
-                                        <a href="index.html"><img id="logo-img-mobile" src="images/logo_purple.png" alt="The Project"></a>
+                                        <a href="<?php echo base_url("")?>"><img id="logo-img-mobile" src="images/logo_purple.png" alt="The Project"></a>
                                     </div>
 
                                     <!-- name-and-slogan -->
@@ -67,7 +67,7 @@
                                     <!-- main-menu -->
                                     <ul class="nav navbar-nav">
                                         <!-- mega-menu start home-->
-                                        <li class="active"><a href="index.html" class="nav-link" id="first-dropdown">Home</a></li>
+                                        <li class="active"><a href="<?php echo base_url("")?>" class="nav-link" id="first-dropdown">Home</a></li>
                                         <!-- mega-menu start about us-->
                                         <li class="nav-item dropdown">
                                             <a href="index.html" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-expanded="false" href="#">About Us</a>

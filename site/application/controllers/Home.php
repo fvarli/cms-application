@@ -15,8 +15,11 @@ class Home extends CI_Controller{
 
     public function index()
     {
-        //print_r(get_settings());die();
-        echo $this->view_folder;
+        $view_data = new stdClass();
+
+        $view_data->view_folder = "home_view";
+
+        $this->load->view($view_data->view_folder, $view_data);
     }
 
     public function product_list()
@@ -381,8 +384,6 @@ class Home extends CI_Controller{
         $this->load->view($view_data->view_folder, $view_data);
     }
 
-
-
     public function news($url)
     {
 
@@ -403,8 +404,6 @@ class Home extends CI_Controller{
 
             if($news){
                 $view_data->news = $news;
-
-
 
                 $view_data->recent_news_list = $this->news_model->get_limit_all(
                     array(
