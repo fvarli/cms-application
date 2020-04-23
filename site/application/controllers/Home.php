@@ -196,7 +196,7 @@ class Home extends CI_Controller{
         $view_data->references = $this->references_model->get_all(
             array(
                 "isActive" => 1
-            ),
+            )
         );
 
         //print_r($view_data->references); die();
