@@ -406,7 +406,7 @@ class Home extends CI_Controller{
 
 
 
-                $view_data->recent_news_list = $this->news_model->get_all(
+                $view_data->recent_news_list = $this->news_model->get_limit_all(
                     array(
                         "isActive" => 1,
                         "id !="    => $news->id
