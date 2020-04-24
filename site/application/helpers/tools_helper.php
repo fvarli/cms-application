@@ -88,6 +88,8 @@ function get_settings(){
 
 }
 
+
+
 function send_mail($toEmail = "", $subject = "", $message = ""){
     $t = &get_instance();
 

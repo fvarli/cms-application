@@ -100,3 +100,36 @@
         else
             return "<b style='color: red'>Undefined</b>";
     }
+
+    function upload_picture($file, $upload_path, $width, $height, $name){
+        $t = &get_instance();
+
+        $t->load->library("simpleimagelib");
+        $upload_error = false;
+        try {
+            // Create a new SimpleImage object
+            $simple_image = $t->simpleimagelib->get_simple_image_instance();
+
+            $simple_image
+                ->fromFile($file)                               // load image.jpg
+                ->thumbnail($width, $height,'center')           // thumbnail to 320x200 pixels
+                ->toFile("{$upload_path}/$name", 'image/png');  // convert to PNG and save a copy to new-image.png
+                //->autoOrient()                                // adjust orientation based on exif data
+                //->flip('x')                                   // flip horizontally
+                //->colorize('DarkBlue')                        // tint dark blue
+                //->border('black', 10)                         // add a 10 pixel black border
+                //->overlay('watermark.png', 'bottom right')    // add a watermark image
+                //->toScreen();                                     // output to the screen
+
+        } catch(Exception $err) {
+            // Handle errors
+            $error = $err->getMessage();
+            $upload_error =true;
+        }
+
+        if($upload_error){
+            echo $error;
+        }else{
+            return true;
+        }
+    }
