@@ -101,10 +101,15 @@
             return "<b style='color: red'>Undefined</b>";
     }
 
-    function upload_picture($file, $upload_path, $width, $height, $name){
+    function upload_service_picture($file, $upload_path, $width, $height, $name){
         $t = &get_instance();
 
         $t->load->library("simpleimagelib");
+
+        if(!is_dir("{$upload_path}/{$width}x{$height}")){
+            mkdir("{$upload_path}/{$width}x{$height}");
+        }
+
         $upload_error = false;
         try {
             // Create a new SimpleImage object
@@ -113,7 +118,7 @@
             $simple_image
                 ->fromFile($file)                               // load image.jpg
                 ->thumbnail($width, $height,'center')           // thumbnail to 320x200 pixels
-                ->toFile("{$upload_path}/$name", 'image/png');  // convert to PNG and save a copy to new-image.png
+                ->toFile("{$upload_path}/{$width}x{$height}/$name", 'image/png');  // convert to PNG and save a copy to new-image.png
                 //->autoOrient()                                // adjust orientation based on exif data
                 //->flip('x')                                   // flip horizontally
                 //->colorize('DarkBlue')                        // tint dark blue
@@ -133,3 +138,19 @@
             return true;
         }
     }
+
+    function get_service_picture($path ="", $picture="", $resolution = "50x50"){
+
+        if($picture !=""){
+
+            if(file_exists(FCPATH . "", "uploads/$path/$resolution/$picture")){
+                $picture = "uploads/$path/$resolution/$picture";
+            }else{
+                $picture = base_url("assets/assets/images/default.jpg");
+            }
+        }else{
+            $picture = base_url("assets/assets/images/default.jpg");
+        }
+        return $picture;
+    }
+
