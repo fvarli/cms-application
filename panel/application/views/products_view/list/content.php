@@ -102,7 +102,7 @@ input:checked + .slider:before {
                         <td class="w50 text-center">#<?php echo $item->id;?></td>
                         <td class="text-center"><?php echo $item->title;?></td>
                         <td class="text-center"><?php echo $item->url;?></td>
-                        <td class="text-center"><?php echo $item->description;?></td>
+                        <td class="text-center"><?php echo character_limiter(strip_tags($item->description), 200);?></td>
                         <td>
 
                         <label class="switch">

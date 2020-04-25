@@ -24,8 +24,8 @@
                 <?php if($settings->logo != "default"){ ?>
                     <img
                         width="70"
-                        src="<?php //TODO active this
-                        // echo base_url("uploads/settings_view/$settings->logo"); ?>"
+                        src="<?php //TODO active this - lecture 246
+                        echo base_url("uploads/settings_view/$settings->logo"); ?>"
                         alt=""
                         class="img-responsive">
 

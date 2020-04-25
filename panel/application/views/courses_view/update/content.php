@@ -33,7 +33,9 @@
                             <input type="hidden" value="<?php echo $item->event_date;?>" name="event_date" id="datetimepicker1" data-plugin="datetimepicker" data-options="{inline: true, viewMode: 'days', format: 'YYYY-MM-DD HH:mm:ss'}"/>
                         </div>
                         <div class="col-md-1 image_upload_container">
-                            <img src="<?php echo base_url("uploads/$viewFolder/$item->img_url"); ?>" alt="" class="img-responsive">
+                            <img src="<?php echo get_picture_to_size($viewFolder, $item->img_url , "255x157");?>"
+                                 alt=""
+                                 class="img-responsive">
                         </div>
                         <div class="col-md-7 form-group image_upload_container">
                             <label>Choose Image</label>

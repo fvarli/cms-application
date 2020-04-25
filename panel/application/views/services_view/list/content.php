@@ -105,7 +105,7 @@ input:checked + .slider:before {
                         <td class="text-center"><?php echo $item->url;?></td>
                         <td class="text-center"><?php echo $item->description;?></td>
                         <td class="text-center">
-                                <img width="100" src="<?php echo get_service_picture($viewFolder, $item->img_url, "350*217");?>" alt="" class="img-rounded">
+                                <img width="100" src="<?php echo get_picture_to_size($viewFolder, $item->img_url, "350x217");?>" alt="" class="img-rounded">
                         </td>
                         <td class="text-center">
                         <label class="switch">

@@ -361,38 +361,28 @@ class Portfolios extends CI_Controller{
     {
         $file_name =  convertToSEO(pathinfo($_FILES["file"]["name"],PATHINFO_FILENAME)) . "." . pathinfo($_FILES["file"]["name"],PATHINFO_EXTENSION);
 
-        $config ["upload_path"] = "uploads/$this->viewFolder";
-        $config['allowed_types'] = 'gif|jpg|png';
-        $config['max_size'] = '10000';
-        $config["file_name"] = $file_name;
-        //	$config['max_width'] = '1024';
-        //	$config['max_height'] = '768';
+        //TODO path image issue - lecture 241
+        $image_255x157 = upload_picture_to_size($_FILES["file"]["tmp_name"],"uploads/$this->viewFolder/", 255,157, $file_name);
+        $image_1080x426 = upload_picture_to_size($_FILES["file"]["tmp_name"],"uploads/$this->viewFolder/", 1080,426, $file_name);
+
+        if($image_255x157 && $image_1080x426){
 
 
-
-        $this->load->library("upload",$config);
-
-        if(!$this->upload->do_upload("file")){
-
-            echo $this->upload->display_errors();
+            $this->portfolios_image_model->add_db(
+                array(
+                    "portfolio_id" => $id,
+                    "img_url" => $file_name,
+                    "rank" => 0,
+                    "isActive" => 1,
+                    "isCover" => 0,
+                    "createdAt" => date("Y-m-d H:i:s"),
+                )
+            );
 
         }else{
-
-            // TODO update img_url name section Lecture 37
-           $uploaded_file = $this->upload->data("file_name");
-
-           $this->portfolios_image_model->add_db(
-               array(
-                   "portfolio_id" => $id,
-                   "img_url" => $file_name,
-                   "rank" => 0,
-                   "isActive" => 1,
-                   "isCover" => 0,
-                   "createdAt" => date("Y-m-d H:i:s"),
-               )
-           );
-
+            echo $this->upload->display_errors();
         }
+
     }
 
     public function refresh_image_list($id)

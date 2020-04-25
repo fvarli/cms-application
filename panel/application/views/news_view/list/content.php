@@ -109,7 +109,11 @@ input:checked + .slider:before {
                         <td class="text-center">
                             <?php if($item->news_type == "image") {?>
 
-                                <img width="100" src="<?php echo base_url("uploads/$viewFolder/$item->img_url");?>" alt="" class="img-rounded">
+                                <img width="100"
+                                     src="<?php echo get_picture_to_size($viewFolder, $item->img_url, "513x289");?>"
+
+                                     alt=""
+                                     class="img-rounded">
                             <?php } else if($item->news_type ="video") {?>
 
                                 <iframe height="150" src="<?php echo $item->video_url;?>" frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen></iframe>

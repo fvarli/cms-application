@@ -19,7 +19,8 @@
                     <div class="row">
 
                         <div class="col-md-1 image_upload_container">
-                            <img src="<?php echo base_url("uploads/$viewFolder/$item->img_url"); ?>" alt="" class="img-responsive">
+                            <img src="<?php //TODO fix visibility - lecture 245
+                            echo get_picture_to_size($viewFolder, $item->img_url,"350x216");?>" alt="" class="img-responsive">
                         </div>
 
                         <div class="col-md-9 form-group image_upload_container">

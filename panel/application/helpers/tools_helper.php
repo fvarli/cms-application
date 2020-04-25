@@ -101,7 +101,7 @@
             return "<b style='color: red'>Undefined</b>";
     }
 
-    function upload_service_picture($file, $upload_path, $width, $height, $name){
+    function upload_picture_to_size($file, $upload_path, $width, $height, $name){
         $t = &get_instance();
 
         $t->load->library("simpleimagelib");
@@ -139,11 +139,10 @@
         }
     }
 
-    function get_service_picture($path ="", $picture="", $resolution = "50x50"){
+    function get_picture_to_size($path ="", $picture="", $resolution = "50x50"){
 
         if($picture !=""){
-
-            if(file_exists(FCPATH . "", "uploads/$path/$resolution/$picture")){
+            if(file_exists(FCPATH . "uploads/$path/$resolution/$picture")){
                 $picture = "uploads/$path/$resolution/$picture";
             }else{
                 $picture = base_url("assets/assets/images/default.jpg");
