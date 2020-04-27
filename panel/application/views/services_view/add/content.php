@@ -39,7 +39,7 @@
                     </div>
 
                     <button type="submit" class="btn btn-primary btn-md btn-outline">Submit</button>
-                    <a href="<?php echo base_url("services  ")?>" class="btn btn-md btn-danger btn-outline">Cancel</a>
+                    <a href="<?php echo base_url("services")?>" class="btn btn-md btn-danger btn-outline">Cancel</a>
                 </form>
             </div><!-- .widget-body -->
         </div><!-- .widget -->

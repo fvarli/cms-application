@@ -52,6 +52,10 @@ $(document).ready(function () {
         })
     })
 
+    $(".button_usage_btn").change(function () {
+        $(".button-information-container").slideToggle();
+    })
+
     // TODO update alert when uploading image lecture 38 - 39 - 40
     var uploadSection = Dropzone.forElement("#dropzone");
 

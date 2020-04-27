@@ -1,6 +1,6 @@
 <?php
 
-class Services extends CI_Controller{
+class Slides extends CI_Controller{
 
     public $viewFolder = "";
 
@@ -8,8 +8,8 @@ class Services extends CI_Controller{
     {
         parent::__construct();
 
-        $this->viewFolder = "services_view";
-        $this->load->model("services_model");
+        $this->viewFolder = "slides_view";
+        $this->load->model("slides_model");
 
         if(!get_active_user()){
             redirect(base_url("login"));
@@ -21,7 +21,7 @@ class Services extends CI_Controller{
         $viewData = new stdClass();
 
         //get all data
-        $items = $this->services_model->get_all(
+        $items = $this->slides_model->get_all(
             array(
             ),
             "rank ASC"
@@ -37,7 +37,7 @@ class Services extends CI_Controller{
         $this->load->view("{$viewData->viewFolder}/{$viewData->subViewFolder}/index", $viewData);
     }
 
-    public function add_new_service()
+    public function add_new_slide()
     {
 
         $viewData =new stdClass();
@@ -51,7 +51,7 @@ class Services extends CI_Controller{
     }
 
     // TODO update save section Lecture 55
-    public function save_new_service()
+    public function save_new_slide()
     {
     /*
         $url = $this->input->post("url");
@@ -87,12 +87,17 @@ class Services extends CI_Controller{
 
             $this->session->set_flashdata("alert", $alert);
 
-            redirect(base_url("services/add_new_service"));
+            redirect(base_url("slides/add_new_service"));
 
             die();
         }
 
         $this->form_validation->set_rules("title", "Title", "required|trim");
+
+        if($this->input->post("allowButton") == "on"){
+            $this->form_validation->set_rules("button_caption", "Button Title", "required|trim");
+            $this->form_validation->set_rules("button_url", "URL Information", "required|trim");
+        }
 
         $this->form_validation->set_message(
             array(
@@ -104,25 +109,24 @@ class Services extends CI_Controller{
 
         if($validate){
 
-
             $file_name = convertToSEO(pathinfo($_FILES["img_url"]["name"], PATHINFO_FILENAME)) . "." . pathinfo($_FILES["img_url"]["name"], PATHINFO_EXTENSION);
 
-            $image_555x343 = upload_picture_to_size($_FILES["img_url"]["tmp_name"],"uploads/$this->viewFolder/", 555,343, $file_name);
-            $image_350x217 = upload_picture_to_size($_FILES["img_url"]["tmp_name"],"uploads/$this->viewFolder/", 350,217, $file_name);
+            $image_1920x650 = upload_picture_to_size($_FILES["img_url"]["tmp_name"],"uploads/$this->viewFolder/", 1920,650, $file_name);
+
+            if($image_1920x650){
 
 
-            if($image_555x343 && $image_555x343){
-
-
-                $insert = $this->services_model->add_db(
+                $insert = $this->slides_model->add_db(
                     array(
-                        "title"         => $this->input->post("title"),
-                        "description"   => $this->input->post("description"),
-                        "url"           =>  $this->input->post("url"),
-                        "img_url"       => $file_name,
-                        "rank"          => 0,
-                        "isActive"      => 1,
-                        "createdAt"     => date("Y-m-d H:i:s")
+                        "title"             => $this->input->post("title"),
+                        "description"       => $this->input->post("description"),
+                        "img_url"           => $file_name,
+                        "allowButton"       => ($this->input->post("alllowButton")=="on") ? 1 : 0,
+                        "button_url"        => $this->input->post("button_caption"),
+                        "button_caption"    =>$this->input->post("button_url"),
+                        "rank"              => 0,
+                        "isActive"          => 1,
+                        "createdAt"         => date("Y-m-d H:i:s")
                     )
                 );
 
@@ -153,7 +157,7 @@ class Services extends CI_Controller{
 
                 $this->session->set_flashdata("alert", $alert);
 
-                redirect(base_url("services/add_new_service"));
+                redirect(base_url("slides/add_new_slide"));
 
                 die();
 
@@ -161,7 +165,7 @@ class Services extends CI_Controller{
 
             $this->session->set_flashdata("alert", $alert);
 
-            redirect(base_url("services"));
+            redirect(base_url("slides"));
 
         } else {
 
@@ -176,11 +180,11 @@ class Services extends CI_Controller{
 
     }
 
-    public function update_existing_service($id)
+    public function update_existing_slide($id)
     {
         $viewData =new stdClass();
 
-        $item = $this->services_model->get_row(
+        $item = $this->slides_model->get_row(
             array(
                 "id" => $id
             )
@@ -195,12 +199,17 @@ class Services extends CI_Controller{
     }
 
     // TODO convertToSEO URL section and test for bugs
-    public function update_service($id)
+    public function update_slide($id)
     {
         $this->load->library("form_validation");
 
 
         $this->form_validation->set_rules("title", "Title", "required|trim");
+
+        if($this->input->post("allowButton") == "on"){
+            $this->form_validation->set_rules("button_caption", "Button Title", "required|trim");
+            $this->form_validation->set_rules("button_url", "URL Information", "required|trim");
+        }
 
         $this->form_validation->set_message(
             array(
@@ -212,22 +221,23 @@ class Services extends CI_Controller{
 
         if($validate){
 
-            // Upload Süreci...
+            // Upload Process...
             if($_FILES["img_url"]["name"] !== "") {
 
                 $file_name = convertToSEO(pathinfo($_FILES["img_url"]["name"], PATHINFO_FILENAME)) . "." . pathinfo($_FILES["img_url"]["name"], PATHINFO_EXTENSION);
 
-                $image_555x343 = upload_picture_to_size($_FILES["img_url"]["tmp_name"],"uploads/$this->viewFolder/", 555,343, $file_name);
-                $image_350x217 = upload_picture_to_size($_FILES["img_url"]["tmp_name"],"uploads/$this->viewFolder/", 350,217, $file_name);
+                $image_1920x650 = upload_picture_to_size($_FILES["img_url"]["tmp_name"],"uploads/$this->viewFolder/", 1920,650, $file_name);
 
 
-                if($image_555x343 && $image_350x217){
+                if($image_1920x650){
 
                     $data = array(
                         "title" => $this->input->post("title"),
                         "description" => $this->input->post("description"),
-                        "url" => convertToSEO($this->input->post("title")),
                         "img_url" => $file_name,
+                        "allowButton"       => ($this->input->post("alllowButton")=="on") ? 1 : 0,
+                        "button_url"        => $this->input->post("button_caption"),
+                        "button_caption"    =>$this->input->post("button_url")
                     );
 
                 } else {
@@ -240,7 +250,7 @@ class Services extends CI_Controller{
 
                     $this->session->set_flashdata("alert", $alert);
 
-                    redirect(base_url("services/update_existing_service/$id"));
+                    redirect(base_url("slides/update_existing_service/$id"));
 
                     die();
 
@@ -249,13 +259,15 @@ class Services extends CI_Controller{
             } else {
 
                 $data = array(
-                    "title" => $this->input->post("title"),
-                    "description" => $this->input->post("description"),
-                    "url" => $this->input->post("url")
+                    "title"             => $this->input->post("title"),
+                    "description"       => $this->input->post("description"),
+                    "allowButton"       => ($this->input->post("alllowButton")=="on") ? 1 : 0,
+                    "button_url"        => $this->input->post("button_caption"),
+                    "button_caption"    =>$this->input->post("button_url")
                 );
             }
 
-            $update = $this->services_model->update_db(array("id" => $id), $data);
+            $update = $this->slides_model->update_db(array("id" => $id), $data);
 
             if($update){
 
@@ -276,7 +288,7 @@ class Services extends CI_Controller{
 
             $this->session->set_flashdata("alert", $alert);
 
-            redirect(base_url("services"));
+            redirect(base_url("slides"));
 
         } else {
 
@@ -286,7 +298,7 @@ class Services extends CI_Controller{
             $viewData->subViewFolder = "update";
             $viewData->form_error = true;
 
-            $viewData->item = $this->services_model->get_row(
+            $viewData->item = $this->slides_model->get_row(
                 array(
                     "id"    => $id,
                 )
@@ -296,9 +308,9 @@ class Services extends CI_Controller{
         }
     }
 
-    public function delete_service($id){
+    public function delete_slide($id){
 
-        $delete = $this->services_model->deleteServices(
+        $delete = $this->slides_model->delete_slide(
             array(
                 "id" => $id
             )
@@ -317,7 +329,7 @@ class Services extends CI_Controller{
             );
         }
         $this->session->set_flashdata("alert", $alert);
-        redirect(base_url("services"));
+        redirect(base_url("slides"));
 
     }
 
@@ -326,7 +338,7 @@ class Services extends CI_Controller{
         if($id){
             $isActive = ($this->input->post("data") === "true") ? 1 : 0;
 
-            $this->services_model->update_db(
+            $this->slides_model->update_db(
                 array(
                     "id" => $id
                 ),
@@ -346,7 +358,7 @@ class Services extends CI_Controller{
         $items = $order["ord"];
 
         foreach ($items as $rank => $id){
-            $this->services_model->update_db(
+            $this->slides_model->update_db(
                 array(
                     "id" => $id,
                     "rank !=" => $rank
@@ -359,6 +371,7 @@ class Services extends CI_Controller{
         }
     }
 
+    //TODO update image section - lecture 253
     public function update_existing_image($id)
     {
         //steps for data will be added
@@ -367,13 +380,12 @@ class Services extends CI_Controller{
         $viewData->viewFolder = $this->viewFolder;
         $viewData->subViewFolder = "images";
 
-        $viewData->item = $this->services_model->get_row(
+        $viewData->item = $this->slides_model->get_row(
           array(
               "id" => $id
           )
         );
 
-        //TODO check this later ->product_image_model
         $viewData->item_images = $this->product_image_model->get_all(
             array(
                 "product_id" => $id

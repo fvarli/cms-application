@@ -3,6 +3,7 @@
 class Home extends CI_Controller{
 
     public $view_folder = "";
+
     public function __construct()
     {
         parent::__construct();
@@ -16,6 +17,16 @@ class Home extends CI_Controller{
     public function index()
     {
         $view_data = new stdClass();
+
+        $this->load->model("slides_model");
+
+        $slides = $this->slides_model->get_all(
+            array(
+                "isActive" => 1
+            ), "rank ASC"
+        );
+
+        $view_data->slides = $slides;
 
         $view_data->view_folder = "home_view";
 
@@ -101,7 +112,6 @@ class Home extends CI_Controller{
 
     public function portfolio_detail($portfolio_url = "")
     {
-
         $view_data = new stdClass();
 
         $this->load->model("portfolios_model");
@@ -437,4 +447,5 @@ class Home extends CI_Controller{
         }
 
     }
+
 }

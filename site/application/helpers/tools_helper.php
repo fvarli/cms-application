@@ -67,7 +67,6 @@ function get_portfolio_cover_image($id){
     return !empty($cover_image) ? $cover_image->img_url: "";
 }
 
-
 function get_settings(){
 
     $t = &get_instance();
@@ -87,8 +86,6 @@ function get_settings(){
     return $settings;
 
 }
-
-
 
 function send_mail($toEmail = "", $subject = "", $message = ""){
     $t = &get_instance();
@@ -139,4 +136,21 @@ function get_news_footer($where = array(), $order = "id ASC", $limit = array("co
         $t->db->limit($limit["count"], $limit["start"]);
 
     return $t->db->get("news")->result();
+}
+
+function get_picture_to_size($path ="", $picture="", $resolution = "50x50"){
+
+    if($picture !=""){
+
+        //echo "1";die();
+
+        if(file_exists(FCPATH . "panel/uploads/$path/$resolution/$picture")){
+            $picture = "panel/uploads/$path/$resolution/$picture";
+        }else{
+            $picture = base_url("assets/assets/images/default.jpg");
+        }
+    }else{
+        $picture = base_url("assets/assets/images/default.jpg");
+    }
+    return $picture;
 }
