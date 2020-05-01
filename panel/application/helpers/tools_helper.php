@@ -141,15 +141,33 @@
 
     function get_picture_to_size($path ="", $picture="", $resolution = "50x50"){
 
-        if($picture !=""){
-            if(file_exists(FCPATH . "uploads/$path/$resolution/$picture")){
-                $picture = "uploads/$path/$resolution/$picture";
-            }else{
-                $picture = base_url("assets/assets/images/default.jpg");
-            }
+    if($picture !=""){
+        if(file_exists(FCPATH . "uploads/$path/$resolution/$picture")){
+            $picture = "uploads/$path/$resolution/$picture";
         }else{
             $picture = base_url("assets/assets/images/default.jpg");
         }
-        return $picture;
+    }else{
+        $picture = base_url("assets/assets/images/default.jpg");
+    }
+    return $picture;
+}
+
+    function get_page_list($page){
+
+        $page_list = array(
+            "homepage" => "Home",
+            "about_us" => "About Us Page",
+            "news" => "News Page",
+            "galleries" => "Galleries Page",
+            "portfolios" => "Portfolios Page",
+            "references" => "References Page",
+            "services" => "Services Page",
+            "courses" => "Courses Page",
+            "brands" => "Brands Page",
+            "contact" => "Contact Page"
+        );
+
+        return (empty($page)) ? $page_list : $page_list[$page];
     }
 
