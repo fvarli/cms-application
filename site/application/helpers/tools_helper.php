@@ -154,3 +154,18 @@ function get_picture_to_size($path ="", $picture="", $resolution = "50x50"){
     }
     return $picture;
 }
+
+function get_popup_service($page = ""){
+    $t = &get_instance();
+
+    $t->load->model("popups_model");
+
+    $popup = $t->popups_model->get_row(
+        array(
+            "isActive" => 1,
+            "page" => $page
+        )
+    );
+
+    return (!empty($popup)) ? $popup : false;
+}

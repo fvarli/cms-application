@@ -86,18 +86,16 @@ input:checked + .slider:before {
                 <table class="table table-hover table-bordered table-striped table-container">
 
                     <thead>
-                    <th class="order"><i class ="fa fa-reorder"></i></th>
                     <th class="w50">#id</th>
                     <th>Title</th>
                     <th>Page</th>
                     <th>Status</th>
                     <th>Process</th>
                     </thead>
-                    <tbody class="sortable" data-url="<?php echo base_url("popups/rankSetter")?>">
+                    <tbody>
                     
                     <?php  foreach($items as $item) { ?>
-                        <tr id="ord-<?php echo $item->id?>">
-                        <td class="order"><i class = "fa fa-reorder"></i></td>
+                        <tr>
                         <td class="w50 text-center">#<?php echo $item->id;?></td>
                         <td class="text-center"><?php echo $item->title;?></td>
                         <td class="text-center"><?php echo get_page_list($item->page);?></td>
@@ -118,7 +116,7 @@ input:checked + .slider:before {
                                     class="btn btn-sm btn-danger btn-remove">
                                     <i class="fa fa-trash"></i> Delete
                             </button>
-                            <a href="<?php echo base_url("brands/update_existing_popup/$item->id");?>" class="btn btn-sm btn-info"><i class="fa fa-pencil-square-o"></i> Edit</a>
+                            <a href="<?php echo base_url("popups/update_existing_popup/$item->id");?>" class="btn btn-sm btn-info"><i class="fa fa-pencil-square-o"></i> Edit</a>
                         </td>
                     </tr>
 

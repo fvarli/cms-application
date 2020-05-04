@@ -72,3 +72,5 @@ $route["about-us"]      = "home/about_us";
 $route["contact"]       = "home/contact";
 $route["send-message"]  = "home/send_contact_message";
 $route["subscribe"]     = "home/make_me_member";
+
+$route["dont-show-again"]     = "home/popup_never_show_again";

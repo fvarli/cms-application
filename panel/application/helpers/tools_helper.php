@@ -156,16 +156,16 @@
     function get_page_list($page){
 
         $page_list = array(
-            "homepage" => "Home",
-            "about_us" => "About Us Page",
-            "news" => "News Page",
-            "galleries" => "Galleries Page",
-            "portfolios" => "Portfolios Page",
-            "references" => "References Page",
-            "services" => "Services Page",
-            "courses" => "Courses Page",
-            "brands" => "Brands Page",
-            "contact" => "Contact Page"
+            "home_view" => "Home",
+            "about_us_view" => "About Us Page",
+            "news_list_view" => "News Page",
+            "gallery_view" => "Galleries Page",
+            "portfolio_list_view" => "Portfolios Page",
+            "reference_list_view" => "References Page",
+            "service_list_view" => "Services Page",
+            "course_list_view" => "Courses Page",
+            "brand_list_view" => "Brands Page",
+            "contact_view" => "Contact Page"
         );
 
         return (empty($page)) ? $page_list : $page_list[$page];

@@ -45,7 +45,6 @@ class Popups extends CI_Controller{
 
     }
 
-    // TODO update save section Lecture 55
     public function save_new_popup()
     {
     /*
@@ -89,6 +88,7 @@ class Popups extends CI_Controller{
                     "title"         => $this->input->post("title"),
                     "description"         => $this->input->post("description"),
                     "page"         => $this->input->post("page"),
+                    "popup_unique_id" => uniqid(),
                     "isActive"      => 1,
                     "createdAt"     => date("Y-m-d H:i:s")
                 )
@@ -147,13 +147,13 @@ class Popups extends CI_Controller{
         $this->load->view("{$viewData->viewFolder}/{$viewData->subViewFolder}/index", $viewData);
     }
 
-    // TODO convertToSEO URL section and test for bugs
     public function update_popup($id)
     {
         $this->load->library("form_validation");
 
 
         $this->form_validation->set_rules("title", "Title", "required|trim");
+        $this->form_validation->set_rules("page", "Related Page", "required|trim");
 
         $this->form_validation->set_message(
             array(
@@ -165,43 +165,12 @@ class Popups extends CI_Controller{
 
         if($validate){
 
-            // Upload Process...
-            if($_FILES["img_url"]["name"] !== "") {
+            $data= array(
+                "title"         => $this->input->post("title"),
+                "description"         => $this->input->post("description"),
+                "page"         => $this->input->post("page")
+            );
 
-                $file_name = convertToSEO(pathinfo($_FILES["img_url"]["name"], PATHINFO_FILENAME)) . "." . pathinfo($_FILES["img_url"]["name"], PATHINFO_EXTENSION);
-
-                $image_350x216 = upload_picture_to_size($_FILES["img_url"]["tmp_name"],"uploads/$this->viewFolder/", 350,216, $file_name);
-
-
-                if($image_350x216){
-
-                    $data = array(
-                        "title" => $this->input->post("title"),
-                        "img_url" => $file_name,
-                    );
-
-                } else {
-
-                    $alert = array(
-                        "title" => "Error",
-                        "text" => "It didn't work.",
-                        "type"  => "error"
-                    );
-
-                    $this->session->set_flashdata("alert", $alert);
-
-                    redirect(base_url("popups/update_existing_popup/$id"));
-
-                    die();
-
-                }
-
-            } else {
-
-                $data = array(
-                    "title" => $this->input->post("title"),
-                );
-            }
 
             $update = $this->popups_model->update_db(array("id" => $id), $data);
 
@@ -285,51 +254,5 @@ class Popups extends CI_Controller{
         }
     }
 
-    public function rankSetter()
-    {
-        $data = $this->input->post("data");
-
-        parse_str($data, $order);
-
-        $items = $order["ord"];
-
-        foreach ($items as $rank => $id){
-            $this->popups_model->update_db(
-                array(
-                    "id" => $id,
-                    "rank !=" => $rank
-                ),
-                array(
-                    "rank" => $rank
-                )
-            );
-
-        }
-    }
-
-    // TODO check later - product_image_model line 382
-    public function update_existing_image($id)
-    {
-        //steps for data will be added
-        $viewData = new stdClass();
-
-        $viewData->viewFolder = $this->viewFolder;
-        $viewData->subViewFolder = "images";
-
-        $viewData->item = $this->popups_model->get_row(
-          array(
-              "id" => $id
-          )
-        );
-
-        $viewData->item_images = $this->product_image_model->get_all(
-            array(
-                "product_id" => $id
-            ),
-            "rank ASC"
-        );
-
-        $this->load->view("{$viewData->viewFolder}/{$viewData->subViewFolder}/index", $viewData);
-    }
 
 }

@@ -30,6 +30,9 @@ class Home extends CI_Controller{
 
         $view_data->view_folder = "home_view";
 
+        /*print_r(get_popup_service($view_data->view_folder));
+        die();*/
+
         $this->load->view($view_data->view_folder, $view_data);
     }
 
@@ -446,6 +449,13 @@ class Home extends CI_Controller{
             //TODO add alert
         }
 
+    }
+
+    public function popup_never_show_again()
+    {
+        $popup_id = $this->input->post("popup_id");
+
+        set_cookie($popup_id, "true", 60 * 60 * 24 * 365);
     }
 
 }
