@@ -82,9 +82,9 @@
                                         <li class="nav-item dropdown">
                                             <a href="index.html" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-expanded="false" href="#">Galleries</a>
                                             <ul class="dropdown-menu">
-                                                <li ><a href="features-headers-default-dark.html">Image Galleries</a></li>
-                                                <li ><a href="features-headers-default-dark.html">Video Galleries</a></li>
-                                                <li ><a href="features-headers-default-dark.html">File Galleries</a></li>
+                                                <li ><a href="<?php echo base_url("image-gallery")?>">Image Galleries</a></li>
+                                                <li ><a href="<?php echo base_url("video-gallery")?>">Video Galleries</a></li>
+                                                <li ><a href="<?php echo base_url("file-gallery")?>">File Galleries</a></li>
                                             </ul>
                                         </li>
                                         <!-- mega-menu start products-->

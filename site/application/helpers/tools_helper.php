@@ -169,3 +169,17 @@ function get_popup_service($page = ""){
 
     return (!empty($popup)) ? $popup : false;
 }
+
+function get_gallery_by_url($url = ""){
+    $t = &get_instance();
+    $t->load->model("galleries_model");
+
+    $gallery = $t->galleries_model->get_row(
+      array(
+          "isActive" => 1,
+          "url" => $url
+      )
+    );
+
+    return ($gallery) ? $gallery : false;
+}
