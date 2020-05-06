@@ -482,13 +482,12 @@ class Home extends CI_Controller{
     {
         if($gallery_url){
 
-
-
             $view_data = new stdClass();
             $view_data->view_folder     = "galleries_view";
             $view_data->sub_view_folder = "image_galleries";
             $view_data->view_name       = "item_content";
             $view_data->gallery         = get_gallery_by_url($gallery_url);
+
             $this->load->model("image_model");
 
             $view_data->images = $this->image_model->get_all(
@@ -506,22 +505,92 @@ class Home extends CI_Controller{
 
     public function video_gallery_list()
     {
+        $view_data = new stdClass();
+        $view_data->view_folder = "galleries_view";
+        $view_data->sub_view_folder = "video_galleries";
+        $view_data->view_name = "list_content";
+        $this->load->model("galleries_model");
 
+        $view_data->galleries = $this->galleries_model->get_all(
+            array(
+                "isActive"      => 1,
+                "gallery_type"  => "video"
+            ), "rank DESC"
+        );
+
+        //print_r($view_data->galleries); die();
+
+        $this->load->view($view_data->view_folder, $view_data);
     }
 
     public function video_gallery($gallery_url = "")
     {
+        if($gallery_url){
 
+            $view_data = new stdClass();
+            $view_data->view_folder     = "galleries_view";
+            $view_data->sub_view_folder = "video_galleries";
+            $view_data->view_name       = "item_content";
+            $view_data->gallery         = get_gallery_by_url($gallery_url);
+
+            $this->load->model("videos_model");
+
+            $view_data->videos = $this->videos_model->get_all(
+                array(
+                    "isActive"      => 1,
+                    "gallery_id"    =>$view_data->gallery->id
+                ), "rank DESC"
+            );
+
+            //print_r($view_data->videos); die();
+
+            $this->load->view($view_data->view_folder, $view_data);
+        }
     }
 
     public function file_gallery_list()
     {
+        $view_data = new stdClass();
+        $view_data->view_folder = "galleries_view";
+        $view_data->sub_view_folder = "file_galleries";
+        $view_data->view_name = "list_content";
+        $this->load->model("galleries_model");
 
+        $view_data->galleries = $this->galleries_model->get_all(
+            array(
+                "isActive"      => 1,
+                "gallery_type"  => "file"
+            ), "rank DESC"
+        );
+
+        //print_r($view_data->files); die();
+
+        $this->load->view($view_data->view_folder, $view_data);
     }
 
     public function file_gallery($gallery_url = "")
     {
+        if($gallery_url){
 
+            $view_data = new stdClass();
+            $view_data->view_folder     = "galleries_view";
+            $view_data->sub_view_folder = "file_galleries";
+            $view_data->view_name       = "item_content";
+            $view_data->gallery         = get_gallery_by_url($gallery_url);
+
+            $this->load->model("files_model");
+
+            $view_data->files = $this->files_model->get_all(
+                array(
+                    "isActive"      => 1,
+                    "gallery_id"    =>$view_data->gallery->id
+                ), "rank DESC"
+            );
+
+            //print_r($view_data->files); die();
+
+            $this->load->view($view_data->view_folder, $view_data);
+        }
     }
 
 }

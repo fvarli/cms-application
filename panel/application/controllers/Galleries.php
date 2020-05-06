@@ -2,6 +2,7 @@
 
 class Galleries extends CI_Controller{
 
+    // TODO check 271 - 272 - 273 - 274 video
     public $viewFolder = "";
 
     public function __construct()
@@ -56,121 +57,6 @@ class Galleries extends CI_Controller{
     // TODO Create folder doesnt work - Lecture 82
     public function save_new_gallery()
     {
-    /*
-        $url = $this->input->post("url");
-        $title = $this->input->post("title");
-        $description = $this->input->post("description");
-
-        $data = array(
-            "url" => $url,
-            "title" => $title,
-            "description" => $description
-        );
-
-        $insert = $this
-            ->db
-            ->insert("products",$data);
-
-        if($insert){
-            redirect(base_url("Products/index"));
-        }else{
-            echo "record process failed";
-        }
-*/
- //          $this->load->library("Form_validation");
-
-        /*
-         * write rules
-         * run form validation
-         * record is saved, if it works
-         * otherwise record isn't saved
-        */
-
-  /*       $this->form_validation->set_rules("gallery_name","Gallery Name","required|trim");
-         $this->form_validation->set_rules("folder_name","Folder Name","required|trim");
-
-        $this->form_validation->set_message(
-            array(
-                "required" => "<b>{field}</b> should be filled out."
-            )
-        );
-
-        //True - False
-        $validate = $this->form_validation->run();
-
-        if($validate){
-
-            $gallery_type = $this->input->post("gallery_type");
-            $path = "uploads/$this->viewFolder";
-            $folder_name = "";
-
-            if($gallery_type == "image"){
-                $folder_name = convertToSEO($this->input->post("folder_name"));
-                $path = "$path/images/$folder_name";
-            }
-            else if($gallery_type == "file"){
-                $folder_name = convertToSEO($this->input->post("folder_name"));
-                $path = "$path/files/$folder_name";
-            }
-
-            if($gallery_type != "video"){
-                if(!mkdir($path,0755)){
-                    $alert = array(
-                        "text" => "It didn't work.",
-                        "type" => "error"
-                    );
-                    $this->session->set_flashdata("alert", $alert);
-                    redirect(base_url("galleries"));
-                }
-
-            }
-*/
-           /* if($create_folder){
-                echo "created";
-            }else{
-                echo "error";
-            }
-
-            die();*/
-
-        /*    $insert = $this->gallery_model->add_db(
-                array(
-                    "url" => $this->input->post("url"),
-                    "gallery_name" => $this->input->post("gallery_name"),
-                    "gallery_type" => $this->input->post("gallery_type"),
-                    "folder_name" => $folder_name,
-                    "rank" => 0,
-                    "isActive" => 1,
-                    "createdAt" => date("Y-m-d H:i:s")
-                )
-            );
-
-            if($insert){
-                $alert = array(
-                    "text" => "Record has been added!",
-                    "type" => "success"
-                );
-            }else{
-                $alert = array(
-                    "text" => "Record couldn't added!",
-                    "type" => "error"
-                );
-            }
-            $this->session->set_flashdata("alert", $alert);
-            redirect(base_url("products"));
-        }
-        else{
-            $viewData = new stdClass();
-            //steps for data will be sent to view
-            $viewData->viewFolder = $this->viewFolder;
-            $viewData->subViewFolder = "add";
-            $viewData->form_error = true;
-
-            $this->load->view("{$viewData->viewFolder}/{$viewData->subViewFolder}/index", $viewData);
-        }
-
-        */
-
         $this->load->library("form_validation");
 
         // Kurallar yazilir..
@@ -192,12 +78,12 @@ class Galleries extends CI_Controller{
 
             if($gallery_type == "image"){
 
-                $folder_name = convertToSEO($this->input->post("gallery_name"));
+                $folder_name = convertToSEO($this->input->post("title"));
                 $path = "$path/images/$folder_name";
 
             } else if($gallery_type == "file"){
 
-                $folder_name = convertToSEO($this->input->post("gallery_name"));
+                $folder_name = convertToSEO($this->input->post("title"));
                 $path = "$path/files/$folder_name";
             }
 
@@ -225,7 +111,7 @@ class Galleries extends CI_Controller{
                 array(
                     "title"         => $this->input->post("title"),
                     "gallery_type"  => $this->input->post("gallery_type"),
-                    "url"           => convertToSEO($this->input->post("gallery_namegalerries")),
+                    "url"           => convertToSEO($this->input->post("title")),
                     "folder_name"   => $folder_name,
                     "rank"          => 0,
                     "isActive"      => 1,
@@ -454,9 +340,9 @@ class Galleries extends CI_Controller{
           )
         );
 
-        $viewData->item_images = $this->product_image_model->get_all(
+        $viewData->item_images = $this->image_model->get_all(
             array(
-                "product_id" => $id
+                "id" => $id
             ),
             "rank ASC"
         );
@@ -464,7 +350,7 @@ class Galleries extends CI_Controller{
         $this->load->view("{$viewData->viewFolder}/{$viewData->subViewFolder}/index", $viewData);
     }
 
-    public function upload_image ($id)
+    public function upload_image_old($id)
     {
         $file_name =  convertToSEO(pathinfo($_FILES["file"]["name"],PATHINFO_FILENAME)) . "." . pathinfo($_FILES["file"]["name"],PATHINFO_EXTENSION);
 
@@ -500,6 +386,64 @@ class Galleries extends CI_Controller{
            );
 
         }
+    }
+
+    public function upload_image($gallery_id, $gallery_type, $folderName)
+    {
+        $file_name =  convertToSEO(pathinfo($_FILES["file"]["name"],PATHINFO_FILENAME)) . "." . pathinfo($_FILES["file"]["name"],PATHINFO_EXTENSION);
+
+        if($gallery_type == "image"){
+
+            $image_252x156 = upload_picture_to_size($_FILES["file"]["tmp_name"],"uploads/$this->viewFolder/images/$folderName/", 252,156, $file_name);
+            $image_350x216 = upload_picture_to_size($_FILES["file"]["tmp_name"],"uploads/$this->viewFolder/images/$folderName/", 350,216, $file_name);
+            $image_851x606 = upload_picture_to_size($_FILES["file"]["tmp_name"],"uploads/$this->viewFolder/images/$folderName/", 851,606, $file_name);
+
+            if($image_252x156 && $image_350x216 && $image_851x606){
+                $this->image_model->add_db(
+                    array(
+                        "img_url" => $file_name,
+                        "rank" => 0,
+                        "isActive" => 1,
+                        "createdAt" => date("Y-m-d H:i:s"),
+                        "gallery_id" => $gallery_id
+                    )
+                );
+            }else{
+                echo $this->upload->display_errors();
+            }
+
+        }else{
+            $config ["upload_path"] = "uploads/$this->viewFolder/files/$folderName";
+            $config['allowed_types'] = 'gif|jpg|png|pdf|doc|docx|txt';
+            $config['max_size'] = '10000';
+            $config["file_name"] = $file_name;
+            //	$config['max_width'] = '1024';
+            //	$config['max_height'] = '768';
+
+            $this->load->library("upload",$config);
+
+            $upload = $this->upload->do_upload("file");
+
+            if($upload){
+
+                $uploaded_file = $this->upload->data("file_name");
+
+
+                $this->file_model->add_db(
+                    array(
+                        "img_url" => $uploaded_file,
+                        "rank" => 0,
+                        "isActive" => 1,
+                        "createdAt" => date("Y-m-d H:i:s"),
+                        "gallery_id" => $gallery_id
+                    )
+                );
+            }else{
+                echo $this->upload->display_errors();
+            }
+
+        }
+
     }
 
     public function refresh_image_list($id)

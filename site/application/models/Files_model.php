@@ -1,6 +1,6 @@
 <?php
 
-class File_model extends CI_Model {
+class Files_model extends CI_Model {
 
     public $tableName = "files";
 
