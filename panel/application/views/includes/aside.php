@@ -116,6 +116,7 @@
                     </a>
                 </li>
 
+                <!-- Portfolios -->
                 <li class="has-submenu">
                     <a href="javascript:void(0)" class="submenu-toggle">
                         <i class="menu-icon fa fa-asterisk"></i>
@@ -174,6 +175,14 @@
                     <a href="javascript:void(0)">
                         <i class="menu-icon fa fa-users"></i>
                         <span class="menu-text">Members</span>
+                    </a>
+                </li>
+
+                <!--Testimonials-->
+                <li>
+                    <a href="<?php echo base_url("testimonials");?>">
+                        <i class="menu-icon fa fa-comments"></i>
+                        <span class="menu-text">Visitor's Notes</span>
                     </a>
                 </li>
 

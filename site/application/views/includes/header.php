@@ -73,7 +73,7 @@
                                             <a href="index.html" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-expanded="false" href="#">About Us</a>
                                             <ul class="dropdown-menu">
                                                 <li ><a href="<?php echo base_url("about-us")?>">About Us</a></li>
-                                                <li ><a href="<?php echo base_url("portfolios")?>">Portfolio</a></li>
+                                                <li ><a href="<?php echo base_url("portfolios")?>">Portfolios</a></li>
                                                 <li ><a href="<?php echo base_url("news")?>">News</a></li>
                                                 <li ><a href="<?php echo base_url("references")?>">References</a></li>
                                                 <li ><a href="<?php echo base_url("services")?>">Services</a></li>
