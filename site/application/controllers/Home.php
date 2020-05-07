@@ -19,6 +19,9 @@ class Home extends CI_Controller{
         $view_data = new stdClass();
 
         $this->load->model("slides_model");
+        $this->load->model("references_model");
+        $this->load->model("services_model");
+        $this->load->model("portfolios_model");
 
         $slides = $this->slides_model->get_all(
             array(
@@ -26,7 +29,28 @@ class Home extends CI_Controller{
             ), "rank ASC"
         );
 
+        $references = $this->references_model->get_all(
+            array(
+                "isActive" => 1
+            ), "rank ASC"
+        );
+
+        $services = $this->services_model->get_all(
+            array(
+                "isActive" => 1
+            ), "rank ASC"
+        );
+
+        $portfolios = $this->portfolios_model->get_all(
+            array(
+                "isActive" => 1
+            ), "rank ASC"
+        );
+
         $view_data->slides = $slides;
+        $view_data->references = $references;
+        $view_data->services = $services;
+        $view_data->portfolios = $portfolios;
 
         $view_data->view_folder = "home_view";
 

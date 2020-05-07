@@ -1,3 +1,4 @@
+<?php $settings = get_settings(); ?>
 <!-- section start -->
 <!-- ================ -->
 <section class="pv-40">
@@ -7,12 +8,14 @@
             <!-- main start -->
             <!-- ================ -->
             <div class="main col-12">
-                <h3 class="title">We Are <strong class="text-default">The Project</strong></h3>
+                <h3 class="title">We Are <strong class="text-default"><?php echo $settings->company_name;?></strong></h3>
                 <div class="separator-2"></div>
                 <div class="row">
                     <div class="col-lg-6">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus illo vero cupiditate, sed enim voluptatibus provident consectetur. Quo dolor sunt nostrum, eligendi illo accusamus odit, ipsam excepturi voluptatem nulla minus.</p>
-                        <p>Blanditiis aspernatur, non quasi, maxime corporis officiis quia. Cupiditate, voluptatibus ducimus, natus, labore mollitia dolorem incidunt voluptatum, delectus eius fugit porro placeat animi voluptatem autem hic eligendi sint. Amet pariatur odit repudiandae sunt. Rem ipsum dolor sit amet, consectetur adipisicing elit. Sunt asperiores a.</p>
+                        <h4 class="title"><strong class="text-default">Mission</strong></h4>
+                        <p><?php echo $settings->mission;?></p>
+                        <h4 class="title"><strong class="text-default">Vision</strong></h4>
+                        <p><?php echo $settings->vision;?></p>
                         <ul class="list-icons">
                             <li><i class="icon-check-1"></i> We are here to support you</li>
                             <li><i class="icon-check-1"></i> Free updates</li>

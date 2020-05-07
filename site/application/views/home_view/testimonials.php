@@ -1,6 +1,6 @@
 <!-- section start -->
 <!-- ================ -->
-<section class="dark-translucent-bg background-img-8 pv-40" style="background-position: 50% 50%;">
+<section class="dark-translucent-bg background-img-8 pv-300" style="background-position: 50% 50%;">
     <div class="owl-carousel content-slider">
         <div class="container">
             <div class="row justify-content-lg-center">

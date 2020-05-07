@@ -183,6 +183,7 @@
                                             <?php
                                             $image = get_portfolio_cover_image($portfolio->id);
                                             $image = ($image) ? base_url("panel/uploads/portfolios_view/$image") : base_url("assets/images/portfolio-1.jpg");
+                                            //$image = get_picture_to_size("portfolios_view", $image, "276x171");
                                             ?>
                                             <img src="<?php echo $image;?>" alt="">
                                             <div class="overlay-bottom text-left">
@@ -192,7 +193,7 @@
                                         <div class="body">
                                             <p class="small mb-10 text-muted"><i class="icon-calendar"></i><?php echo getReadableDate($portfolio->createdAt);?></p>
                                             <p><?php echo character_limiter(strip_tags($portfolio->description),25); ?></p>
-                                            <a href="<?php echo base_url("portfolio-detail/$portfolio->url");?>" class="btn btn-default btn-sm btn-hvr hvr-sweep-to-right margin-clear">Read More<i class="fa fa-arrow-right pl-10"></i></a>
+                                            <a href="<?php echo base_url("portfolio-detail/$portfolio->portfolio_url");?>" class="btn btn-default btn-sm btn-hvr hvr-sweep-to-right margin-clear">Read More<i class="fa fa-arrow-right pl-10"></i></a>
                                         </div>
                                     </div>
                                 </div>

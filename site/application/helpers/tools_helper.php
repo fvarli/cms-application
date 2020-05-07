@@ -71,9 +71,9 @@ function get_settings(){
 
     $t = &get_instance();
 
-    $settings = $t->session->userdata("settings");
+    //$settings = $t->session->userdata("settings");
 
-    if(empty($settings)){
+    //if(empty($settings)){
 
         $t->load->model("settings_model");
 
@@ -81,7 +81,7 @@ function get_settings(){
 
         $t->session->set_userdata("settings", $settings);
 
-    }
+    //}
 
     return $settings;
 
@@ -147,10 +147,10 @@ function get_picture_to_size($path ="", $picture="", $resolution = "50x50"){
         if(file_exists(FCPATH . "panel/uploads/$path/$resolution/$picture")){
             $picture = "panel/uploads/$path/$resolution/$picture";
         }else{
-            $picture = base_url("assets/assets/images/default.jpg");
+            $picture = base_url("assets/images/default.jpg");
         }
     }else{
-        $picture = base_url("assets/assets/images/default.jpg");
+        $picture = base_url("assets/images/default.jpg");
     }
     return $picture;
 }
