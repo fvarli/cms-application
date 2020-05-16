@@ -64,7 +64,40 @@ class Settings extends CI_Controller{
 
             $alert = array(
                 "title" => "Error",
-                "text" => "Please choose an image",
+                "text" => "Please choose an image for desktop",
+                "type"  => "error"
+            );
+
+            $this->session->set_flashdata("alert", $alert);
+
+            redirect(base_url("settings/add_new_settings"));
+
+            die();
+        }
+
+
+        if($_FILES["mobile_logo"]["name"] == ""){
+
+            $alert = array(
+                "title" => "Error",
+                "text" => "Please choose an image for mobile",
+                "type"  => "error"
+            );
+
+            $this->session->set_flashdata("alert", $alert);
+
+            redirect(base_url("settings/add_new_settings"));
+
+            die();
+        }
+
+
+
+        if($_FILES["favicon"]["name"] == ""){
+
+            $alert = array(
+                "title" => "Error",
+                "text" => "Please choose an image for favicon",
                 "type"  => "error"
             );
 
@@ -95,7 +128,11 @@ class Settings extends CI_Controller{
 
             $image_150x35 = upload_picture_to_size($_FILES["logo"]["tmp_name"],"uploads/$this->viewFolder/", 150,35, $file_name);
 
-            if($image_150x35){
+            $image_300x70 = upload_picture_to_size($_FILES["mobile_logo"]["tmp_name"],"uploads/$this->viewFolder/", 300,70, $file_name);
+
+            $image_32x32 = upload_picture_to_size($_FILES["favicon"]["tmp_name"],"uploads/$this->viewFolder/", 32,32, $file_name);
+
+            if($image_150x35 && $image_300x70 && $image_32x32){
 
                 $insert = $this->settings_model->add_db(
                     array(
@@ -114,6 +151,8 @@ class Settings extends CI_Controller{
                         "instagram"     => $this->input->post("instagram"),
                         "linkedin"      => $this->input->post("linkedin"),
                         "logo"          => $file_name,
+                        "mobile_logo"          => $file_name,
+                        "favicon"          => $file_name,
                         "createdAt"     => date("Y-m-d H:i:s")
                     )
                 );
@@ -206,7 +245,25 @@ class Settings extends CI_Controller{
 
         if($validate){
 
-            // Upload Process...
+            $data = array(
+                "company_name"  => $this->input->post("company_name"),
+                "phone_1"       => $this->input->post("phone_1"),
+                "phone_2"       => $this->input->post("phone_2"),
+                "fax_1"         => $this->input->post("fax_1"),
+                "fax_2"         => $this->input->post("fax_2"),
+                "address"       => $this->input->post("address"),
+                "about_us"      => $this->input->post("about_us"),
+                "mission"       => $this->input->post("mission"),
+                "vision"        => $this->input->post("vision"),
+                "email"         => $this->input->post("email"),
+                "facebook"      => $this->input->post("facebook"),
+                "twitter"       => $this->input->post("twitter"),
+                "instagram"     => $this->input->post("instagram"),
+                "linkedin"      => $this->input->post("linkedin"),
+                "updatedAt"     => date("Y-m-d H:i:s")
+            );
+
+            // Upload Process - Desktop...
             if($_FILES["logo"]["name"] !== "") {
 
                 $file_name = convertToSEO($this->input->post("company_name")) . "." . pathinfo($_FILES["logo"]["name"], PATHINFO_EXTENSION);
@@ -215,30 +272,13 @@ class Settings extends CI_Controller{
 
                 if($image_150x35){
 
-                    $data = array(
-                        "company_name"  => $this->input->post("company_name"),
-                        "phone_1"       => $this->input->post("phone_1"),
-                        "phone_2"       => $this->input->post("phone_2"),
-                        "fax_1"         => $this->input->post("fax_1"),
-                        "fax_2"         => $this->input->post("fax_2"),
-                        "address"       => $this->input->post("address"),
-                        "about_us"      => $this->input->post("about_us"),
-                        "mission"       => $this->input->post("mission"),
-                        "vision"        => $this->input->post("vision"),
-                        "email"         => $this->input->post("email"),
-                        "facebook"      => $this->input->post("facebook"),
-                        "twitter"       => $this->input->post("twitter"),
-                        "instagram"     => $this->input->post("instagram"),
-                        "linkedin"      => $this->input->post("linkedin"),
-                        "logo"          => $uploaded_file,
-                        "updatedAt"     => date("Y-m-d H:i:s")
-                    );
+                    $data["logo"] = $file_name;
 
                 } else {
 
                     $alert = array(
                         "title" => "Error",
-                        "text" => "It didn't work.",
+                        "text" => "It didn't work. - Desktop image couldn't be uploaded.",
                         "type"  => "error"
                     );
 
@@ -250,25 +290,64 @@ class Settings extends CI_Controller{
 
                 }
 
-            } else {
+            }
 
-                $data = array(
-                    "company_name"  => $this->input->post("company_name"),
-                    "phone_1"       => $this->input->post("phone_1"),
-                    "phone_2"       => $this->input->post("phone_2"),
-                    "fax_1"         => $this->input->post("fax_1"),
-                    "fax_2"         => $this->input->post("fax_2"),
-                    "address"       => $this->input->post("address"),
-                    "about_us"      => $this->input->post("about_us"),
-                    "mission"       => $this->input->post("mission"),
-                    "vision"        => $this->input->post("vision"),
-                    "email"         => $this->input->post("email"),
-                    "facebook"      => $this->input->post("facebook"),
-                    "twitter"       => $this->input->post("twitter"),
-                    "instagram"     => $this->input->post("instagram"),
-                    "linkedin"      => $this->input->post("linkedin"),
-                    "updatedAt"     => date("Y-m-d H:i:s")
-                );
+            // Upload Process - Mobile...
+            if($_FILES["mobile_logo"]["name"] !== "") {
+
+                $file_name = convertToSEO($this->input->post("company_name")) . "." . pathinfo($_FILES["mobile_logo"]["name"], PATHINFO_EXTENSION);
+
+                $image_300x70 = upload_picture_to_size($_FILES["mobile_logo"]["tmp_name"],"uploads/$this->viewFolder/", 300,70, $file_name);
+
+                if($image_300x70){
+
+                    $data["mobile_logo"] = $file_name;
+
+                } else {
+
+                    $alert = array(
+                        "title" => "Error",
+                        "text" => "It didn't work. - Mobile image couldn't be uploaded.",
+                        "type"  => "error"
+                    );
+
+                    $this->session->set_flashdata("alert", $alert);
+
+                    redirect(base_url("settings/update_existing_settings/$id"));
+
+                    die();
+
+                }
+
+            }
+
+            // Upload Process - Favicon...
+            if($_FILES["favicon"]["name"] !== "") {
+
+                $file_name = convertToSEO($this->input->post("company_name")) . "." . pathinfo($_FILES["favicon"]["name"], PATHINFO_EXTENSION);
+
+                $image_32x32 = upload_picture_to_size($_FILES["favicon"]["tmp_name"],"uploads/$this->viewFolder/", 150,35, $file_name);
+
+                if($image_32x32){
+
+                    $data["favicon"] = $file_name;
+
+                } else {
+
+                    $alert = array(
+                        "title" => "Error",
+                        "text" => "It didn't work. - Favicon image couldn't be uploaded.",
+                        "type"  => "error"
+                    );
+
+                    $this->session->set_flashdata("alert", $alert);
+
+                    redirect(base_url("settings/update_existing_settings/$id"));
+
+                    die();
+
+                }
+
             }
 
             $update = $this->settings_model->update_db(array("id" => $id), $data);

@@ -88,9 +88,10 @@ input:checked + .slider:before {
                     <thead>
                     <th class="order"><i class ="fa fa-reorder"></i></th>
                     <th class="w50">#id</th>
-                    <th>Title</th>
-                    <th>Message</th>
                     <th>Full Name</th>
+                    <th>Title</th>
+                    <th>Company Name</th>
+                    <th>Message</th>
                     <th>Images</th>
                     <th>Status</th>
                     <th>Process</th>
@@ -101,12 +102,14 @@ input:checked + .slider:before {
                         <tr id="ord-<?php echo $item->id?>">
                         <td class="order"><i class = "fa fa-reorder"></i></td>
                         <td class="w50 text-center">#<?php echo $item->id;?></td>
-                        <td class="text-center"><?php echo $item->title;?></td>
-                        <td class="text-center"><?php echo $item->description;?></td>
                         <td class="text-center"><?php echo $item->full_name;?></td>
+                        <td class="text-center"><?php echo $item->title;?></td>
+                        <td class="text-center"><?php echo $item->company_name;?></td>
+                        <td class="text-center"><?php echo $item->description;?></td>
+
                         <td class="text-center">
                                 <img width="100"
-                                     src="<?php echo get_picture_to_size($viewFolder, $item->img_url,"350x216");?>"
+                                     src="<?php echo get_picture_to_size($viewFolder, $item->img_url,"90x90");?>"
                                      alt=""
                                      class="img-rounded">
                         </td>
@@ -123,11 +126,11 @@ input:checked + .slider:before {
                         </td>
                         <td class="w250">
                             <button
-                                    data-url="<?php echo base_url("testimonials/delete_testimonials/$item->id");?>"
+                                    data-url="<?php echo base_url("testimonials/delete_testimonial/$item->id");?>"
                                     class="btn btn-sm btn-danger btn-remove">
                                     <i class="fa fa-trash"></i> Delete
                             </button>
-                            <a href="<?php echo base_url("testimonials/update_existing_testimonials/$item->id");?>" class="btn btn-sm btn-info"><i class="fa fa-pencil-square-o"></i> Edit</a>
+                            <a href="<?php echo base_url("testimonials/update_existing_testimonial/$item->id");?>" class="btn btn-sm btn-info"><i class="fa fa-pencil-square-o"></i> Edit</a>
                         </td>
                     </tr>
 

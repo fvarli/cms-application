@@ -3,7 +3,7 @@
     <div class="row">
         <div class="form-group col-md-8">
             <label>Your Company Email Address</label>
-            <input class="form-control" name="company_name" placeholder="Your Company Email Address" value="<?php echo isset($form_error) ? set_value("email") : "";  ?>">
+            <input class="form-control" name="company_name" placeholder="Your Company Email Address" value="<?php echo isset($form_error) ? set_value("email") : $item->email;  ?>">
             <?php if (isset($form_error)) {?>
                 <small class="pull-right input-form-error"><?php echo $form_error("email")?></small>
             <?php }?>
@@ -14,7 +14,7 @@
     <div class="row">
         <div class="form-group col-md-4">
             <label>Facebook Address</label>
-            <input class="form-control" name="facebook" placeholder="Facebook Address" value="<?php echo isset($form_error) ? set_value("facebook") : "";  ?>">
+            <input class="form-control" name="facebook" placeholder="Facebook Address" value="<?php echo isset($form_error) ? set_value("facebook") : $item->facebook;  ?>">
             <?php if (isset($form_error)) {?>
                 <small class="pull-right input-form-error"><?php echo $form_error("facebook")?></small>
             <?php }?>
@@ -22,7 +22,7 @@
 
         <div class="form-group col-md-4">
             <label>Twitter Address</label>
-            <input class="form-control" name="twitter" placeholder="Twitter Address" value="<?php echo isset($form_error) ? set_value("twitter") : "";  ?>">
+            <input class="form-control" name="twitter" placeholder="Twitter Address" value="<?php echo isset($form_error) ? set_value("twitter") : $item->twitter; ?>">
             <?php if (isset($form_error)) {?>
                 <small class="pull-right input-form-error"><?php echo $form_error("twitter")?></small>
             <?php }?>
@@ -32,7 +32,7 @@
     <div class="row">
         <div class="form-group col-md-4">
             <label>Instagram Address</label>
-            <input class="form-control" name="instagram" placeholder="Instagram Address" value="<?php echo isset($form_error) ? set_value("instagram") : ""; ?>">
+            <input class="form-control" name="instagram" placeholder="Instagram Address" value="<?php echo isset($form_error) ? set_value("instagram") : $item->instagram;?>">
             <?php if (isset($form_error)) {?>
                 <small class="pull-right input-form-error"><?php echo $form_error("instagram")?></small>
             <?php }?>
@@ -40,7 +40,7 @@
 
         <div class="form-group col-md-4">
             <label>LinkedIn Address</label>
-            <input class="form-control" name="linkedin" placeholder="LinkedIn Address" value="<?php echo isset($form_error) ? set_value("linkedin") : "";  ?>">
+            <input class="form-control" name="linkedin" placeholder="LinkedIn Address" value="<?php echo isset($form_error) ? set_value("linkedin") : $item->linkedin; ?>">
             <?php if (isset($form_error)) {?>
                 <small class="pull-right input-form-error"><?php echo $form_error("linkedin")?></small>
             <?php }?>

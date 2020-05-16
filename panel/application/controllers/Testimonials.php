@@ -92,7 +92,10 @@ class Testimonials extends CI_Controller{
             die();
         }
 
+        $this->form_validation->set_rules("full_name", "Full Name", "required|trim");
+        $this->form_validation->set_rules("company_name", "Company Name", "required|trim");
         $this->form_validation->set_rules("title", "Title", "required|trim");
+        $this->form_validation->set_rules("description", "Description", "required|trim");
 
         $this->form_validation->set_message(
             array(
@@ -107,16 +110,18 @@ class Testimonials extends CI_Controller{
 
             $file_name = convertToSEO(pathinfo($_FILES["img_url"]["name"], PATHINFO_FILENAME)) . "." . pathinfo($_FILES["img_url"]["name"], PATHINFO_EXTENSION);
 
-            $image_350x216 = upload_picture_to_size($_FILES["img_url"]["tmp_name"],"uploads/$this->viewFolder/", 350,216, $file_name);
+            $image_90x90 = upload_picture_to_size($_FILES["img_url"]["tmp_name"],"uploads/$this->viewFolder/", 90,90, $file_name);
 
 
-            if($image_350x216){
+            if($image_90x90){
 
                 $insert = $this->testimonials_model->add_db(
                     array(
+                        "full_name"         => $this->input->post("full_name"),
+                        "company_name"         => $this->input->post("company_name"),
                         "title"         => $this->input->post("title"),
+                        "description"         => $this->input->post("description"),
                         "img_url"       => $file_name,
-                        "rank"          => 0,
                         "isActive"      => 1,
                         "createdAt"     => date("Y-m-d H:i:s")
                     )
@@ -213,13 +218,16 @@ class Testimonials extends CI_Controller{
 
                 $file_name = convertToSEO(pathinfo($_FILES["img_url"]["name"], PATHINFO_FILENAME)) . "." . pathinfo($_FILES["img_url"]["name"], PATHINFO_EXTENSION);
 
-                $image_350x216 = upload_picture_to_size($_FILES["img_url"]["tmp_name"],"uploads/$this->viewFolder/", 350,216, $file_name);
+                $image_90x90 = upload_picture_to_size($_FILES["img_url"]["tmp_name"],"uploads/$this->viewFolder/", 90,90, $file_name);
 
 
-                if($image_350x216){
+                if($image_90x90){
 
                     $data = array(
-                        "title" => $this->input->post("title"),
+                        "full_name"         => $this->input->post("full_name"),
+                        "company_name"         => $this->input->post("company_name"),
+                        "title"         => $this->input->post("title"),
+                        "description"         => $this->input->post("description"),
                         "img_url" => $file_name,
                     );
 
@@ -242,7 +250,9 @@ class Testimonials extends CI_Controller{
             } else {
 
                 $data = array(
-                    "title" => $this->input->post("title"),
+                    "full_name"         => $this->input->post("full_name"),
+                    "company_name"         => $this->input->post("company_name"),
+                    "title"         => $this->input->post("title"),
                 );
             }
 

@@ -7,6 +7,8 @@
     <!-- "fixed": enables fixed navigation mode (sticky menu) e.g. class="header fixed clearfix" -->
     <!-- "fixed-desktop": enables fixed navigation only for desktop devices e.g. class="header fixed fixed-desktop clearfix" -->
     <!-- "fixed-all": enables fixed navigation only for all devices desktop and mobile e.g. class="header fixed fixed-desktop clearfix" -->
+
+    <?php $this->load->view("includes/top_header");?>
     <!-- "dark": dark version of header e.g. class="header dark clearfix" -->
     <!-- "centered": mandatory class for the centered logo layout -->
     <!-- ================ -->
@@ -20,7 +22,11 @@
 
                         <!-- logo -->
                         <div id="logo" class="logo">
-                            <a href="<?php echo base_url("")?>"><img id="logo_img" src="<?php echo base_url("assets/images");?>/logo_purple.png" alt="The Project"></a>
+                            <a href="<?php echo base_url("")?>">
+                                <img id="logo_img"
+                                     src="<?php echo get_picture_to_size("settings_view", $settings->logo, "150x35");?>"
+                                     alt="<?php echo $settings->company_name;?>">
+                            </a>
                         </div>
 
                         <!-- name-and-slogan -->
@@ -49,12 +55,22 @@
 
                                     <!-- logo -->
                                     <div id="logo-mobile" class="logo">
-                                        <a href="<?php echo base_url("")?>"><img id="logo-img-mobile" src="<?php echo base_url("assets/images");?>/logo_purple.png" alt="The Project"></a>
+                                        <a href="<?php echo base_url("")?>">
+                                            <?php if($this->agent->is_mobile()) { ?>
+                                                <img id="logo-img-mobile"
+                                                     src="<?php echo get_picture_to_size("settings_view", $settings->mobile_logo, "300x70");?>"
+                                                     alt="<?php echo $settings->company_name;?>">
+                                            <?php } else { ?>
+                                                <img id="logo-img-mobile"
+                                                     src="<?php echo get_picture_to_size("settings_view", $settings->mobile_logo, "150x35");?>"
+                                                     alt="<?php echo $settings->company_name;?>">
+                                            <?php }?>
+                                        </a>
                                     </div>
 
                                     <!-- name-and-slogan -->
                                     <div class="site-slogan">
-                                        Multipurpose HTML5 Template
+                                        <?php echo $settings->slogan;?>
                                     </div>
 
                                 </div>
