@@ -145,6 +145,12 @@
                 <li class="dropdown">
                     <a href="javascript:void(0)" class="side-panel-toggle" data-toggle="class" data-target="#side-panel" data-class="open" role="button"><i class="zmdi zmdi-hc-lg zmdi-apps"></i></a>
                 </li>
+
+                <li class="nav-item dropdown hidden-float">
+                    <a href="<?php echo base_url("logout")?>">
+                        <i class="fa fa-power-off"></i>
+                    </a>
+                </li>
             </ul>
         </div>
     </div><!-- navbar-container -->
