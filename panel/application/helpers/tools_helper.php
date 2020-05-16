@@ -14,14 +14,44 @@
     }
 
     function get_active_user(){
-        $getActiveUSer = &get_instance();
+        $getActiveUser = &get_instance();
 
-        $user = $getActiveUSer->session->userdata("user");
+        $user = $getActiveUser->session->userdata("user");
 
         if ($user)
             return $user;
         else
             return false;
+    }
+
+    function is_admin(){
+    $getActiveUser = &get_instance();
+
+    $user = $getActiveUser->session->userdata("user");
+        return true;
+
+    if ($user->user_role == "admin")
+        return true;
+    else
+        return false;
+}
+
+    function get_controller_list(){
+
+        $t = &get_instance();
+
+        $controllers = array();
+        $t->load->helper("file");
+
+        $files = get_dir_file_info(APPPATH. "controllers", FALSE);
+
+        foreach (array_keys($files) as $file){
+            if($file !== "index.html"){
+                $controllers[] = strtolower(str_replace(".php", '', $file));
+            }
+        }
+
+        return $controllers;
     }
 
     function send_mail($toEmail = "", $subject = "", $message = ""){

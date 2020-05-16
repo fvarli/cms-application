@@ -65,7 +65,9 @@ input:checked + .slider:before {
         <div class="col-md-12">
             <h4 class="m-b-lg">
                 User List
-                <a href="<?php echo base_url("users/add_new_user");?>" class="btn-outline btn-primary btn-xs pull-right"><i class="fa fa-plus"></i>Add New</a>
+                <?php if(is_admin()) {?>
+                    <a href="<?php echo base_url("users/add_new_user");?>" class="btn-outline btn-primary btn-xs pull-right"><i class="fa fa-plus"></i>Add New</a>
+                <?php } ?>
             </h4>
         </div><!-- END column -->
 
@@ -75,11 +77,13 @@ input:checked + .slider:before {
 
                 <?php if(empty($items)) { ?>
 
-                <div class="alert alert-info">
+                    <div class="alert alert-info">
 
-                    <h4 class="alert-title">custom alert info</h4>
-                    <p>There is no data. Please <a href="<?php echo base_url("users/add_new_user");?>"><font color="#00008b">click here</font></a> to add data.</p>
-                </div>
+                        <?php if(is_admin()) {?>
+                            <h4 class="alert-title">custom alert info</h4>
+                            <p>There is no data. Please <a href="<?php echo base_url("users/add_new_user");?>"><font color="#00008b">click here</font></a> to add data.</p>
+                        <?php } ?>
+                    </div>
 
                 <?php } else { ?>
 
@@ -98,34 +102,35 @@ input:checked + .slider:before {
                     
                     <?php  foreach($items as $item) { ?>
                         <tr id="ord-<?php echo $item->id?>">
-                        <td class="order"><i class = "fa fa-reorder"></i></td>
-                        <td class="w50 text-center">#<?php echo $item->id;?></td>
-                        <td class="text-center w125"><?php echo $item->user_name;?></td>
-                        <td class="text-center w125"><?php echo $item->full_name;?></td>
-                        <td class="text-center w150"><?php echo $item->email;?></td>
-                        <td class="text-center w100" >
-                        <label class="switch" >
-                        <input
-                            data-url = "<?php echo  base_url("users/isActiveSetter/$item->id");?>"
-                            class="isActive"
-                            type="checkbox"
-                            data-switchery
-                            <?php echo ($item->isActive) ? "checked" : ""; ?>/>
-                        <span class="slider round"></span>
-                        </label>
-                        </td>
-                        <td class="text-center w250">
-                            <button
-                                    data-url="<?php echo base_url("users/delete_user/$item->id");?>"
-                                    class="btn btn-sm btn-danger btn-remove">
-                                    <i class="fa fa-trash"></i> Delete
-                            </button>
-                            <a href="<?php echo base_url("users/update_existing_user/$item->id");?>" class="btn btn-sm btn-info"><i class="fa fa-pencil-square-o"></i> Edit</a>
-                            <a href="<?php echo base_url("users/update_existing_user_password/$item->id");?>" class="btn btn-sm btn-warning"><i class="fa fa-key"></i> Edit Password</a>
-                        </td>
-                    </tr>
+                            <td class="order"><i class = "fa fa-reorder"></i></td>
+                            <td class="w50 text-center">#<?php echo $item->id;?></td>
+                            <td class="text-center w125"><?php echo $item->user_name;?></td>
+                            <td class="text-center w125"><?php echo $item->full_name;?></td>
+                            <td class="text-center w150"><?php echo $item->email;?></td>
+                            <td class="text-center w100" >
+                            <label class="switch">
+                            <input
+                                data-url = "<?php echo  base_url("users/isActiveSetter/$item->id");?>"
+                                class="isActive"
+                                type="checkbox"
+                                data-switchery
+                                <?php echo ($item->isActive) ? "checked" : ""; ?>/>
+                            <span class="slider round"></span>
+                            </label>
+                            </td>
+                            <td class="text-center w500">
+                                <button
+                                        data-url="<?php echo base_url("users/delete_user/$item->id");?>"
+                                        class="btn btn-sm btn-danger btn-remove">
+                                        <i class="fa fa-trash"></i> Delete
+                                </button>
+                                <a href="<?php echo base_url("users/update_existing_user/$item->id");?>" class="btn btn-sm btn-info"><i class="fa fa-pencil-square-o"></i> Edit</a>
+                                <a href="<?php echo base_url("users/update_existing_user_password/$item->id");?>" class="btn btn-sm btn-warning"><i class="fa fa-key"></i> Edit Password</a>
+                            </td>
+                        </tr>
 
                     <?php }?>
+
                     </tbody>
                 </table>
 

@@ -20,8 +20,18 @@ class Users extends CI_Controller{
     {
         $viewData = new stdClass();
 
+        $user = get_active_user();
+
+        if(is_admin()){
+            $where =array();
+        }else{
+            $where = array("id" =>$user->id);
+        }
+
         //get all data
-        $items = $this->users_model->get_all();
+        $items = $this->users_model->get_all(
+            $where
+        );
         /*print_r($items); die();*/
 
         //steps for data will be sent to view

@@ -170,6 +170,14 @@
                     </a>
                 </li>
 
+                <!--Users Roles-->
+                <li>
+                    <a href="<?php echo base_url("user_roles");?>">
+                        <i class="menu-icon fa fa-eye"></i>
+                        <span class="menu-text">Users Roles</span>
+                    </a>
+                </li>
+
                 <!--Members-->
                 <li>
                     <a href="javascript:void(0)">
