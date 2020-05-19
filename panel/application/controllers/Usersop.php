@@ -79,6 +79,10 @@ class Usersop extends CI_Controller{
                     "text" => "You are in.",
                     "type" => "success"
                 );
+
+                /* Send to session the user permissions */
+                set_user_roles();
+                /*****************************************/
                 $this->session->set_userdata("user", $user);
                 $this->session->set_flashdata("alert",$alert);
                 redirect(base_url());

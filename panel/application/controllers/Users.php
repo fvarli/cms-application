@@ -1,6 +1,6 @@
 <?php
 
-class Users extends CI_Controller{
+class Users extends MY_Controller{
 
     public $viewFolder = "";
 
@@ -10,6 +10,7 @@ class Users extends CI_Controller{
 
         $this->viewFolder = "users_view";
         $this->load->model("users_model");
+        $this->load->model("users_roles_model");
 
         if(!get_active_user()){
             redirect(base_url("login"));
@@ -47,6 +48,14 @@ class Users extends CI_Controller{
     {
 
         $viewData =new stdClass();
+
+        $this->load->model("users_roles_model");
+
+        $viewData->user_roles = $this->users_roles_model->get_all(
+            array(
+                "isActive" => 1
+            )
+        );
 
         //steps for data will be added
         $viewData->viewFolder = $this->viewFolder;
@@ -87,6 +96,7 @@ class Users extends CI_Controller{
         $this->form_validation->set_rules("email", "Email", "required|trim|is_unique[users.email]|valid_email");
         $this->form_validation->set_rules("password", "Password", "required|trim|min_length[8]|max_length[24]");
         $this->form_validation->set_rules("re_password", "Re Password", "required|trim|min_length[8]|max_length[24]|matches[password]");
+        $this->form_validation->set_rules("user_role_id", "User Role", "required|trim");
 
         $this->form_validation->set_message(
             array(
@@ -108,6 +118,7 @@ class Users extends CI_Controller{
                     "user_name"     => $this->input->post("user_name"),
                     "full_name"     => $this->input->post("full_name"),
                     "email"         => $this->input->post("email"),
+                    "user_role_id"  => $this->input->post("user_role_id"),
                     "password"      => md5($this->input->post("password")),
                     "isActive"      => 1,
                     "createdAt"     => date("Y-m-d H:i:s")
@@ -162,6 +173,12 @@ class Users extends CI_Controller{
             )
         );
 
+        $viewData->user_roles = $this->users_roles_model->get_all(
+            array(
+                "isActive" => 1
+            )
+        );
+
         //steps for data will be added
         $viewData->viewFolder = $this->viewFolder;
         $viewData->subViewFolder = "update";
@@ -191,24 +208,27 @@ class Users extends CI_Controller{
     // TODO update doesn't work  - Lecture 102
     public function update_user($id)
     {
-       $existing_user = $this->load->library("form_validation");
+       $this->load->library("form_validation");
 
-        $this->users_model->get_row(
+
+        $existing_user = $this->users_model->get_row(
             array(
                 "id" => $id
             )
         );
 
-        if($existing_user->user_name != $this->input("user_name")){
+
+        if($existing_user->user_name != $this->input->post("user_name")){
             $this->form_validation->set_rules("user_name", "User Name", "required|trim|is_unique[users.user_name]");
         }
 
-        if($existing_user->email != $this->input("email")){
+        if($existing_user->email != $this->input->post("email")){
             $this->form_validation->set_rules("email", "Email", "required|trim|is_unique[users.email]|valid_email");
         }
 
 
         $this->form_validation->set_rules("full_name", "Full Name", "required|trim");
+        $this->form_validation->set_rules("user_role_id", "User Role", "required|trim");
 
 
         $this->form_validation->set_message(
@@ -231,6 +251,7 @@ class Users extends CI_Controller{
                     "user_name"     => $this->input->post("user_name"),
                     "full_name"     => $this->input->post("full_name"),
                     "email"         => $this->input->post("email"),
+                    "user_role_id"  => $this->input->post("user_role_id"),
                 )
                 );
 
@@ -266,6 +287,12 @@ class Users extends CI_Controller{
             $viewData->item = $this->users_model->get_row(
                 array(
                     "id"    => $id,
+                )
+            );
+
+            $viewData->user_roles = $this->users_roles_model->get_all(
+                array(
+                    "isActive" => 1
                 )
             );
 

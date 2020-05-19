@@ -65,7 +65,7 @@ input:checked + .slider:before {
         <div class="col-md-12">
             <h4 class="m-b-lg">
                 User List
-                <?php if(is_admin()) {?>
+                <?php if(is_allowed_write_module()) {?>
                     <a href="<?php echo base_url("users/add_new_user");?>" class="btn-outline btn-primary btn-xs pull-right"><i class="fa fa-plus"></i>Add New</a>
                 <?php } ?>
             </h4>
@@ -79,7 +79,7 @@ input:checked + .slider:before {
 
                     <div class="alert alert-info">
 
-                        <?php if(is_admin()) {?>
+                        <?php if(is_allowed_write_module()) {?>
                             <h4 class="alert-title">custom alert info</h4>
                             <p>There is no data. Please <a href="<?php echo base_url("users/add_new_user");?>"><font color="#00008b">click here</font></a> to add data.</p>
                         <?php } ?>
@@ -94,6 +94,7 @@ input:checked + .slider:before {
                     <th class="w50">#id</th>
                     <th>User Name</th>
                     <th>Full Name</th>
+                    <th>User Role</th>
                     <th>E-mail</th>
                     <th>Status</th>
                     <th>Process</th>
@@ -106,6 +107,7 @@ input:checked + .slider:before {
                             <td class="w50 text-center">#<?php echo $item->id;?></td>
                             <td class="text-center w125"><?php echo $item->user_name;?></td>
                             <td class="text-center w125"><?php echo $item->full_name;?></td>
+                            <td class="text-center w125"><?php echo $item->user_role_id;?></td>
                             <td class="text-center w150"><?php echo $item->email;?></td>
                             <td class="text-center w100" >
                             <label class="switch">

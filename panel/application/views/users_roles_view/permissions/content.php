@@ -1,6 +1,6 @@
-
-
-
+<?php
+$permissions = json_decode($item->permissions);
+?>
 
 <style>
     .switch {
@@ -67,7 +67,7 @@
 <div class="row">
     <div class="col-md-12">
         <h4 class="m-b-lg">
-            <?php echo "You edit <b>$item->title</b> record's permissons"; ?>
+            <?php echo "You edit <b>$item->title</b> record's permissions"; ?>
         </h4>
     </div><!-- END column -->
     <div class="col-md-12">
@@ -88,22 +88,34 @@
                                 <tr>
                                     <td class="w150"><?php echo $controller_name;?></td>
                                     <td class="w100 text-center">
-                                        <label class="switch"> <input name="permissions[<?php echo $controller_name;?>][read]" type="checkbox" data-switchery/>
+                                        <label class="switch">
+                                            <input
+                                                    <?php echo (isset($permissions->$controller_name) && isset($permissions->$controller_name->read)) ? "checked" : ""; ?>
+                                                    name="permissions[<?php echo $controller_name;?>][read]" type="checkbox" data-switchery/>
                                             <span class="slider round"></span>
                                         </label>
                                     </td>
                                     <td class="w100 text-center">
-                                        <label class="switch"> <input name="permissions[<?php echo $controller_name;?>][write]" type="checkbox" data-switchery/>
+                                        <label class="switch">
+                                            <input
+                                                <?php echo (isset($permissions->$controller_name) && isset($permissions->$controller_name->write)) ? "checked" : ""; ?>
+                                                    name="permissions[<?php echo $controller_name;?>][write]" type="checkbox" data-switchery/>
                                             <span class="slider round"></span>
                                         </label>
                                     </td>
                                     <td class="w100 text-center">
-                                        <label class="switch"> <input name="permissions[<?php echo $controller_name;?>][update]" type="checkbox" data-switchery/>
+                                        <label class="switch">
+                                            <input
+                                                <?php echo (isset($permissions->$controller_name) && isset($permissions->$controller_name->update)) ? "checked" : ""; ?>
+                                                    name="permissions[<?php echo $controller_name;?>][update]" type="checkbox" data-switchery/>
                                             <span class="slider round"></span>
                                         </label>
                                     </td>
                                     <td class="w100 text-center">
-                                        <label class="switch"> <input name="permissions[<?php echo $controller_name;?>][delete]" type="checkbox" data-switchery/>
+                                        <label class="switch">
+                                            <input
+                                                <?php echo (isset($permissions->$controller_name) && isset($permissions->$controller_name->delete)) ? "checked" : ""; ?>
+                                                    name="permissions[<?php echo $controller_name;?>][delete]" type="checkbox" data-switchery/>
                                             <span class="slider round"></span>
                                         </label>
                                     </td>

@@ -1,6 +1,6 @@
 <?php
 
-class Brands extends CI_Controller{
+class Brands extends MY_Controller{
 
     public $viewFolder = "";
 
@@ -39,6 +39,9 @@ class Brands extends CI_Controller{
 
     public function add_new_brand()
     {
+        if(!is_allowed_write_module()){
+            redirect(base_url("brands"));
+        }
 
         $viewData =new stdClass();
 
@@ -74,6 +77,10 @@ class Brands extends CI_Controller{
             echo "record process failed";
         }
 */
+        if(!is_allowed_write_module()){
+            redirect(base_url($this->router->fetch_class()));
+        }
+
         $this->load->library("form_validation");
 
 
@@ -174,6 +181,11 @@ class Brands extends CI_Controller{
 
     public function update_existing_brand($id)
     {
+
+        if(!is_allowed_updatde_module()){
+            redirect(base_url("brands"));
+        }
+
         $viewData =new stdClass();
 
         $item = $this->brands_model->get_row(
@@ -193,6 +205,9 @@ class Brands extends CI_Controller{
     // TODO convertToSEO URL section and test for bugs
     public function update_brand($id)
     {
+        if(!is_allowed_update_module()){
+            redirect(base_url($this->router->fetch_class()));
+        }
         $this->load->library("form_validation");
 
 
@@ -287,7 +302,11 @@ class Brands extends CI_Controller{
         }
     }
 
-    public function delete_brand($id){
+    public function delete_record($id){
+
+        if(!is_allowed_delete_module()){
+            redirect(base_url($this->router->fetch_class()));
+        }
 
         $delete = $this->brands_model->deleteBrand(
             array(
@@ -314,6 +333,10 @@ class Brands extends CI_Controller{
 
     public function isActiveSetter($id)
     {
+        if(!is_allowed_update_module()){
+            die();
+        }
+
         if($id){
             $isActive = ($this->input->post("data") === "true") ? 1 : 0;
 
@@ -330,6 +353,11 @@ class Brands extends CI_Controller{
 
     public function rankSetter()
     {
+        if(!is_allowed_update_module()){
+            die();
+        }
+
+
         $data = $this->input->post("data");
 
         parse_str($data, $order);
@@ -350,29 +378,5 @@ class Brands extends CI_Controller{
         }
     }
 
-    // TODO check later - product_image_model line 382
-    public function update_existing_image($id)
-    {
-        //steps for data will be added
-        $viewData = new stdClass();
-
-        $viewData->viewFolder = $this->viewFolder;
-        $viewData->subViewFolder = "images";
-
-        $viewData->item = $this->brands_model->get_row(
-          array(
-              "id" => $id
-          )
-        );
-
-        $viewData->item_images = $this->product_image_model->get_all(
-            array(
-                "product_id" => $id
-            ),
-            "rank ASC"
-        );
-
-        $this->load->view("{$viewData->viewFolder}/{$viewData->subViewFolder}/index", $viewData);
-    }
 
 }

@@ -1,6 +1,6 @@
 <?php
 
-class Galleries extends CI_Controller{
+class Galleries extends MY_Controller{
 
     // TODO check 271 - 272 - 273 - 274 video
     public $viewFolder = "";

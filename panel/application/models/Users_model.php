@@ -22,10 +22,7 @@ class Users_model extends CI_Model {
 
     public function get_row($where = array())
     {
-        return $this
-        ->db
-        ->where($where)
-        ->get($this->tableName)->row();
+        return $this->db->where($where)->get($this->tableName)->row();
     }
 
     //add a new record to database
