@@ -54,7 +54,7 @@
                 </td>
                 <td class="w100 text-center">
                     <button
-                        data-url="<?php echo base_url("portfolios/delete_image/$image->id/$image->portfolio_id");?>"
+                        data-url="<?php echo base_url("portfolios/delete_record/$image->id/$image->portfolio_id");?>"
                         class="btn btn-sm btn-danger btn-remove btn-block">
                         <i class="fa fa-trash"></i> Delete
                     </button>

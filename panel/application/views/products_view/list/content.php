@@ -65,7 +65,9 @@ input:checked + .slider:before {
         <div class="col-md-12">
             <h4 class="m-b-lg">
                 Product List
-                <a href="<?php echo base_url("products/add_new_product");?>" class="btn-outline btn-primary btn-xs pull-right"><i class="fa fa-plus"></i>Add New</a>
+                <?php if(is_allowed_write_module()) { ?>
+                    <a href="<?php echo base_url("products/add_new_product");?>" class="btn-outline btn-primary btn-xs pull-right"><i class="fa fa-plus"></i>Add New</a>
+                <?php } ?>
             </h4>
         </div><!-- END column -->
 
@@ -74,12 +76,13 @@ input:checked + .slider:before {
             <div class="widget p-lg">
 
                 <?php if(empty($items)) { ?>
+                    <?php if(is_allowed_write_module()) { ?>
+                        <div class="alert alert-info">
 
-                <div class="alert alert-info">
-
-                    <h4 class="alert-title">custom alert info</h4>
-                    <p>There is no data. Please <a href="<?php echo base_url("products/add_new_product");?>"><font color="#00008b">click here</font></a> to add data.</p>
-                </div>
+                            <h4 class="alert-title">custom alert info</h4>
+                            <p>There is no data. Please <a href="<?php echo base_url("products/add_new_product");?>"><font color="#00008b">click here</font></a> to add data.</p>
+                        </div>
+                    <?php } ?>
 
                 <?php } else { ?>
 
@@ -116,13 +119,18 @@ input:checked + .slider:before {
                         </label>
                         </td>
                         <td class="w250">
-                            <button
-                                    data-url="<?php echo base_url("products/delete_product/$item->id");?>"
-                                    class="btn btn-sm btn-danger btn-remove">
-                                    <i class="fa fa-trash"></i> Delete
-                            </button>
+                            <?php if(is_allowed_delete_module()) { ?>
+                                <button
+                                        data-url="<?php echo base_url("products/delete_record/$item->id");?>"
+                                        class="btn btn-sm btn-danger btn-remove">
+                                        <i class="fa fa-trash"></i> Delete
+                                </button>
+                            <?php } ?>
+
+                            <?php if(is_allowed_update_module()) { ?>
                             <a href="<?php echo base_url("products/update_existing_product/$item->id");?>" class="btn btn-sm btn-info"><i class="fa fa-pencil-square-o"></i> Edit</a>
                             <a href="<?php echo base_url("products/update_existing_image/$item->id");?>" class="btn btn-sm btn-dark"><i class="fa fa-image"></i> Images</a>
+                            <?php } ?>
                         </td>
                     </tr>
 

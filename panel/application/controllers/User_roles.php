@@ -213,9 +213,9 @@ class User_roles extends MY_Controller{
         }
     }
 
-    public function delete_users_role($id){
+    public function delete_record($id){
 
-        $delete = $this->users_roles_model->delete_user_role(
+        $delete = $this->users_roles_model->delete_record(
             array(
                 "id" => $id
             )
@@ -240,6 +240,10 @@ class User_roles extends MY_Controller{
 
     public function isActiveSetter($id)
     {
+        if(!is_allowed_update_module()){
+            die();
+        }
+
         if($id){
             $isActive = ($this->input->post("data") === "true") ? 1 : 0;
 
@@ -256,6 +260,10 @@ class User_roles extends MY_Controller{
 
     public function user_permissions($id)
     {
+        if(!is_allowed_update_module()){
+            die();
+        }
+
         $viewData =new stdClass();
 
         $item = $this->users_roles_model->get_row(
@@ -274,6 +282,10 @@ class User_roles extends MY_Controller{
 
     public function update_user_permissions($id)
     {
+        if(!is_allowed_update_module()){
+            die();
+        }
+
         $permissions = json_encode($this->input->post("permissions"));
 
         $update = $this->users_roles_model->update_db(

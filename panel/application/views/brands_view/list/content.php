@@ -76,15 +76,14 @@ input:checked + .slider:before {
             <div class="widget p-lg">
 
                 <?php if(empty($items)) { ?>
-
-                <div class="alert alert-info">
-
-                    <h4 class="alert-title">custom alert info</h4>
                     <?php if(is_allowed_write_module()) { ?>
-                        <p>There is no data. Please <a href="<?php echo base_url("brands/add_new_brand");?>"><font color="#00008b">click here</font></a> to add data.</p>
-                    <?php } ?>
-                </div>
+                        <div class="alert alert-info">
 
+                        <h4 class="alert-title">custom alert info</h4>
+                            <p>There is no data. Please <a href="<?php echo base_url("brands/add_new_brand");?>"><font color="#00008b">click here</font></a> to add data.</p>
+
+                        </div>
+                    <?php } ?>
                 <?php } else { ?>
 
                 <table class="table table-hover table-bordered table-striped table-container">
@@ -124,7 +123,7 @@ input:checked + .slider:before {
                         <td class="w250">
                             <?php if(is_allowed_delete_module()) { ?>
                                 <button
-                                        data-url="<?php echo base_url("brands/delete_brand/$item->id");?>"
+                                        data-url="<?php echo base_url("brands/delete_record/$item->id");?>"
                                         class="btn btn-sm btn-danger btn-remove">
                                         <i class="fa fa-trash"></i> Delete
                                 </button>

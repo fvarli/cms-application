@@ -42,7 +42,7 @@ class Portfolios_model extends CI_Model {
         return $this->db->where($where)->update($this->tableName, $data);
     }
 
-    public function deleteportfolio($where = array()){
+    public function delete_record($where = array()){
         
         $res = $this
                 ->db

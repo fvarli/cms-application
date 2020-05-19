@@ -6,7 +6,7 @@ echo "</hr>";
 print_r(get_user_roles());
 
 echo "</hr>";
-echo is_allowed_review_module();
+echo is_allowed_view_module();
 echo "<pre>";
 
 ?>

@@ -213,9 +213,9 @@ class Popups extends MY_Controller{
         }
     }
 
-    public function delete_popup($id){
+    public function delete_record($id){
 
-        $delete = $this->popups_model->delete_popup(
+        $delete = $this->popups_model->delete_record(
             array(
                 "id" => $id
             )

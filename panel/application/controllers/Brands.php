@@ -308,7 +308,7 @@ class Brands extends MY_Controller{
             redirect(base_url($this->router->fetch_class()));
         }
 
-        $delete = $this->brands_model->deleteBrand(
+        $delete = $this->brands_model->delete_record(
             array(
                 "id" => $id
             )

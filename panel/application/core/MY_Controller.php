@@ -6,7 +6,7 @@ class MY_Controller extends CI_Controller{
     {
         parent::__construct();
 
-        if(!is_allowed_review_module()){
+        if(!is_allowed_view_module()){
             redirect(base_url());
         }
     }

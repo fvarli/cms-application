@@ -112,7 +112,7 @@ input:checked + .slider:before {
                         </td>
                         <td class="w250">
                             <button
-                                    data-url="<?php echo base_url("popups/delete_popup/$item->id");?>"
+                                    data-url="<?php echo base_url("popups/delete_record/$item->id");?>"
                                     class="btn btn-sm btn-danger btn-remove">
                                     <i class="fa fa-trash"></i> Delete
                             </button>

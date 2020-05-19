@@ -263,9 +263,9 @@ class Galleries extends MY_Controller{
     }
 
     // TODO Delete folder doesnt work - Lecture 84
-    public function delete_gallery($id){
+    public function delete_record($id){
 
-        $delete = $this->gallery_model->deleteProduct(
+        $delete = $this->gallery_model->delete_record(
             array(
                 "id" => $id
             )

@@ -212,9 +212,9 @@ class Portfolio_categories extends MY_Controller{
         }
     }
 
-    public function delete_portfolio_category($id){
+    public function delete_record($id){
 
-        $delete = $this->portfolio_categories_model->delete_portfolio_category(
+        $delete = $this->portfolio_categories_model->delete_record(
             array(
                 "id" => $id
             )

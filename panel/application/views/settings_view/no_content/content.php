@@ -65,7 +65,9 @@ input:checked + .slider:before {
         <div class="col-md-12">
             <h4 class="m-b-lg">
                 Site Settings
-                <a href="<?php echo base_url("settings/add_new_settings");?>" class="btn-outline btn-primary btn-xs pull-right"><i class="fa fa-plus"></i>Add New</a>
+                <?php if(is_allowed_write_module()) { ?>
+                    <a href="<?php echo base_url("settings/add_new_settings");?>" class="btn-outline btn-primary btn-xs pull-right"><i class="fa fa-plus"></i>Add New</a>
+                <?php } ?>
             </h4>
         </div><!-- END column -->
 
@@ -75,11 +77,13 @@ input:checked + .slider:before {
 
                 <?php if(empty($items)) { ?>
 
-                <div class="alert alert-info">
+                    <?php if(is_allowed_write_module()) { ?>
+                        <div class="alert alert-info">
 
-                    <h4 class="alert-title">custom alert info</h4>
-                    <p>There is no data. Please <a href="<?php echo base_url("settings/add_new_settings");?>"><font color="#00008b">click here</font></a> to add data.</p>
-                </div>
+                            <h4 class="alert-title">custom alert info</h4>
+                            <p>There is no data. Please <a href="<?php echo base_url("settings/add_new_settings");?>"><font color="#00008b">click here</font></a> to add data.</p>
+                        </div>
+                    <?php } ?>
 
                 <?php } ?>
 

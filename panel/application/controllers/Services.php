@@ -296,9 +296,9 @@ class Services extends MY_Controller{
         }
     }
 
-    public function delete_service($id){
+    public function delete_record($id){
 
-        $delete = $this->services_model->deleteServices(
+        $delete = $this->services_model->delete_record(
             array(
                 "id" => $id
             )
@@ -323,6 +323,10 @@ class Services extends MY_Controller{
 
     public function isActiveSetter($id)
     {
+        if(!is_allowed_update_module()){
+            die();
+        }
+
         if($id){
             $isActive = ($this->input->post("data") === "true") ? 1 : 0;
 
@@ -339,6 +343,10 @@ class Services extends MY_Controller{
 
     public function rankSetter()
     {
+        if(!is_allowed_update_module()){
+            die();
+        }
+
         $data = $this->input->post("data");
 
         parse_str($data, $order);

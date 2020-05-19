@@ -65,7 +65,9 @@ input:checked + .slider:before {
         <div class="col-md-12">
             <h4 class="m-b-lg">
                 Reference List
-                <a href="<?php echo base_url("references/add_new_reference");?>" class="btn-outline btn-primary btn-xs pull-right"><i class="fa fa-plus"></i>Add New</a>
+                <?php if(is_allowed_write_module()) { ?>
+                    <a href="<?php echo base_url("references/add_new_reference");?>" class="btn-outline btn-primary btn-xs pull-right"><i class="fa fa-plus"></i>Add New</a>
+                <?php } ?>
             </h4>
         </div><!-- END column -->
 
@@ -74,12 +76,12 @@ input:checked + .slider:before {
             <div class="widget p-lg">
 
                 <?php if(empty($items)) { ?>
-
-                <div class="alert alert-info">
-
-                    <h4 class="alert-title">custom alert info</h4>
-                    <p>There is no data. Please <a href="<?php echo base_url("references/add_new_reference");?>"><font color="#00008b">click here</font></a> to add data.</p>
-                </div>
+                    <?php if(is_allowed_write_module()) { ?>
+                        <div class="alert alert-info">
+                            <h4 class="alert-title">custom alert info</h4>
+                            <p>There is no data. Please <a href="<?php echo base_url("references/add_new_reference");?>"><font color="#00008b">click here</font></a> to add data.</p>
+                        </div>
+                    <?php } ?>
 
                 <?php } else { ?>
 
@@ -119,12 +121,17 @@ input:checked + .slider:before {
                         </label>
                         </td>
                         <td class="w250">
-                            <button
-                                    data-url="<?php echo base_url("references/delete_reference/$item->id");?>"
-                                    class="btn btn-sm btn-danger btn-remove">
-                                    <i class="fa fa-trash"></i> Delete
-                            </button>
-                            <a href="<?php echo base_url("references/update_existing_reference/$item->id");?>" class="btn btn-sm btn-info"><i class="fa fa-pencil-square-o"></i> Edit</a>
+                            <?php if(is_allowed_delete_module()) { ?>
+                                <button
+                                        data-url="<?php echo base_url("references/delete_record/$item->id");?>"
+                                        class="btn btn-sm btn-danger btn-remove">
+                                        <i class="fa fa-trash"></i> Delete
+                                </button>
+                            <?php } ?>
+
+                            <?php if(is_allowed_update_module()) { ?>
+                                <a href="<?php echo base_url("references/update_existing_reference/$item->id");?>" class="btn btn-sm btn-info"><i class="fa fa-pencil-square-o"></i> Edit</a>
+                            <?php } ?>
                         </td>
                     </tr>
 

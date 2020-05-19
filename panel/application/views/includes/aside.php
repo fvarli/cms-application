@@ -56,7 +56,7 @@
             <ul class="app-menu">
 
                 <!--Dashboard-->
-                <?php if(is_allowed_review_module("dashboard")) {?>
+                <?php if(is_allowed_view_module("dashboard")) {?>
                     <li>
                         <a href="<?php echo base_url("dashboard")?>">
                             <i class="menu-icon zmdi zmdi-view-dashboard zmdi-hc-lg"></i>
@@ -67,7 +67,7 @@
                 <?php } ?>
 
                 <!--Settings-->
-                <?php if(is_allowed_review_module("settings")) {?>
+                <?php if(is_allowed_view_module("settings")) {?>
                     <li>
                     <a href="<?php echo base_url("settings")?>">
                         <i class="menu-icon zmdi zmdi-settings zmdi-hc-lg"></i>
@@ -77,7 +77,7 @@
                 <?php } ?>
 
                 <!--Email Settings-->
-                <?php if(is_allowed_review_module("emailsettings")) {?>
+                <?php if(is_allowed_view_module("emailsettings")) {?>
                     <li>
                     <a href="<?php echo base_url("emailsettings");?>">
                         <i class="menu-icon zmdi zmdi-email zmdi-hc-lg"></i>
@@ -88,7 +88,7 @@
 
 
                 <!--Galleries-->
-                <?php if(is_allowed_review_module("galleries")) {?>
+                <?php if(is_allowed_view_module("galleries")) {?>
                     <li class="has-submenu">
                     <a href="javascript:void(0)" class="submenu-toggle">
                         <i class="menu-icon zmdi zmdi-apps zmdi-hc-lg"></i>
@@ -105,7 +105,7 @@
                 <?php } ?>
 
                 <!--Slider-->
-                <?php if(is_allowed_review_module("slides")) {?>
+                <?php if(is_allowed_view_module("slides")) {?>
                     <li>
                     <a href="<?php echo base_url("slides")?>">
                         <i class="menu-icon zmdi zmdi-layers zmdi-hc-lg"></i>
@@ -115,7 +115,7 @@
                 <?php } ?>
 
                 <!--Products-->
-                <?php if(is_allowed_review_module("products")) {?>
+                <?php if(is_allowed_view_module("products")) {?>
                     <li>
                     <a href="<?php echo base_url("products");?>">
                         <i class="menu-icon fa fa-cubes"></i>
@@ -125,7 +125,7 @@
                 <?php } ?>
 
                 <!--Services-->
-                <?php if(is_allowed_review_module("services")) {?>
+                <?php if(is_allowed_view_module("services")) {?>
                     <li>
                     <a href="<?php echo base_url("services");?>">
                         <i class="menu-icon fa fa-cutlery"></i>
@@ -135,7 +135,7 @@
                 <?php } ?>
 
                 <!-- Portfolios -->
-                <?php if(is_allowed_review_module("portfolio_categories") && is_allowed_review_module("portfolios")) {?>
+                <?php if(is_allowed_view_module("portfolio_categories") && is_allowed_view_module("portfolios")) {?>
                     <li class="has-submenu">
                     <a href="javascript:void(0)" class="submenu-toggle">
                         <i class="menu-icon fa fa-asterisk"></i>
@@ -159,7 +159,7 @@
                 <?php } ?>
 
                 <!--News-->
-                <?php if(is_allowed_review_module("news")) {?>
+                <?php if(is_allowed_view_module("news")) {?>
                     <li>
                     <a href="<?php echo base_url("news");?>">
                         <i class="menu-icon fa fa-newspaper-o"></i>
@@ -169,7 +169,7 @@
                 <?php } ?>
 
                 <!--Courses-->
-                <?php if(is_allowed_review_module("courses")) {?>
+                <?php if(is_allowed_view_module("courses")) {?>
                     <li>
                     <a href="<?php echo base_url("courses");?>">
                         <i class="menu-icon fa fa-calendar"></i>
@@ -179,7 +179,7 @@
                 <?php } ?>
 
                 <!--References-->
-                <?php if(is_allowed_review_module("references")) {?>
+                <?php if(is_allowed_view_module("references")) {?>
                     <li>
                     <a href="<?php echo base_url("references");?>">
                         <i class="menu-icon zmdi zmdi-check zmdi-hc-lg"></i>
@@ -189,7 +189,7 @@
                 <?php } ?>
 
                 <!--Users-->
-                <?php if(is_allowed_review_module("users")) {?>
+                <?php if(is_allowed_view_module("users")) {?>
                     <li>
                     <a href="<?php echo base_url("users");?>">
                         <i class="menu-icon fa fa-user-secret"></i>
@@ -199,17 +199,17 @@
                 <?php } ?>
 
                 <!--Users Roles-->
-                <?php //if(is_allowed_review_module("user_roles")) {?>
+                <?php if(is_allowed_view_module("user_roles")) {?>
                     <li>
                     <a href="<?php echo base_url("user_roles");?>">
                         <i class="menu-icon fa fa-eye"></i>
                         <span class="menu-text">Users Roles</span>
                     </a>
                 </li>
-                <?php //} ?>
+                <?php } ?>
 
                 <!--Members-->
-                <?php if(is_allowed_review_module("members")) {?>
+                <?php if(is_allowed_view_module("members")) {?>
                     <li>
                     <a href="<?php echo base_url("members");?>">
                         <i class="menu-icon fa fa-users"></i>
@@ -219,7 +219,7 @@
                 <?php } ?>
 
                 <!--Testimonials-->
-                <?php if(is_allowed_review_module("testimonials")) {?>
+                <?php if(is_allowed_view_module("testimonials")) {?>
                     <li>
                     <a href="<?php echo base_url("testimonials");?>">
                         <i class="menu-icon fa fa-comments"></i>
@@ -229,7 +229,7 @@
                 <?php } ?>
 
                 <!--Brands-->
-                <?php if(is_allowed_review_module("brands")) {?>
+                <?php if(is_allowed_view_module("brands")) {?>
                     <li>
                     <a href="<?php echo base_url("brands");?>">
                         <i class="menu-icon zmdi zmdi-puzzle-piece zmdi-hc-lg"></i>
@@ -239,7 +239,7 @@
                 <?php } ?>
 
                 <!--Popup-->
-                <?php if(is_allowed_review_module("popups")) {?>
+                <?php if(is_allowed_view_module("popups")) {?>
                     <li>
                     <a href="<?php echo base_url("popups");?>">
                         <i class="menu-icon zmdi zmdi-lamp zmdi-hc-lg"></i>

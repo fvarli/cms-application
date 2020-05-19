@@ -25,40 +25,21 @@
     }
 
 
-    function is_allowed_review_module($module_name=""){
-        $t = &get_instance();
-        $module_name = ($module_name=="") ? $t->router->fetch_class() : $module_name;
+    function get_user_roles(){
+            $t = &get_instance();
+
+            return $t->session->userdata("user_roles");
+            /*
+            $roles = array();
+
+            foreach ($t->session->userdata("user
+            _roles") as $role) {
+                $roles[$role->id] = $role->permissions;
+            }
 
 
-        $user = get_active_user();
-        $user_roles = get_user_roles();
-
-        if(isset($user_roles[$user->user_role_id])){
-           $permissions = json_decode($user_roles[$user->user_role_id]);
-           if(isset($permissions->$module_name) && isset($permissions->$module_name->read)){
-               return true;
-           }
+            return $roles;*/
         }
-        return false;
-        #$user_roles = $t->session->userdata("user_roles");
-        #$user = $t->session->userdata("user");
-    }
-
-function get_user_roles(){
-        $t = &get_instance();
-
-        return $t->session->userdata("user_roles");
-        /*
-        $roles = array();
-
-        foreach ($t->session->userdata("user
-        _roles") as $role) {
-            $roles[$role->id] = $role->permissions;
-        }
-
-
-        return $roles;*/
-    }
 
 
     function set_user_roles(){

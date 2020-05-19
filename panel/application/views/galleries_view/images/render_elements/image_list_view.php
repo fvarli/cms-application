@@ -16,7 +16,7 @@
         <th>Cover Image</th>
         <th>Process</th>
         </thead>
-        <tbody class="sortable data-url="<?php echo base_url("products/imageRankSetter")?>">
+        <tbody class="sortable data-url="<?php echo base_url("galleries/imageRankSetter")?>">
 
         <?php foreach ($item_images as $image){?>
 
@@ -30,7 +30,7 @@
                 <td class="w100 text-center">
                     <label class="switch">
                         <input
-                            data-url = "<?php echo  base_url("products/imageIsActiveSetter/$image->id");?>"
+                            data-url = "<?php echo  base_url("galleries/imageIsActiveSetter/$image->id");?>"
                             class="isActive"
                             type="checkbox"
                             data-switchery
@@ -41,7 +41,7 @@
                 <td class="text-center">
                     <label class="switch">
                         <input
-                                data-url = "<?php echo  base_url("products/isCoverSetter/$image->id/$image->product_id");?>"
+                                data-url = "<?php echo  base_url("galleries/isCoverSetter/$image->id/$image->product_id");?>"
                                 class="isCover"
                                 type="checkbox"
                                 data-switchery
@@ -50,11 +50,13 @@
                     </label>
                 </td>
                 <td class="w100 text-center">
-                    <button
-                        data-url="<?php echo base_url("products/delete_image/$image->id/$image->product_id");?>"
-                        class="btn btn-sm btn-danger btn-remove btn-block">
-                        <i class="fa fa-trash"></i> Delete
-                    </button>
+                    <?php if(is_allowed_delete_module()) { ?>
+                        <button
+                            data-url="<?php echo base_url("galleries/delete_record/$image->id/$image->product_id");?>"
+                            class="btn btn-sm btn-danger btn-remove btn-block">
+                            <i class="fa fa-trash"></i> Delete
+                        </button>
+                    <?php } ?>
                 </td>
             </tr>
 

@@ -363,9 +363,9 @@ class News extends MY_Controller{
         }
     }
 
-    public function delete_news($id){
+    public function delete_record($id){
 
-        $delete = $this->news_model->deleteNews(
+        $delete = $this->news_model->delete_record(
             array(
                 "id" => $id
             )

@@ -65,7 +65,9 @@ input:checked + .slider:before {
         <div class="col-md-12">
             <h4 class="m-b-lg">
                 User List
-                <a href="<?php echo base_url("emailsettings/add_new_email");?>" class="btn-outline btn-primary btn-xs pull-right"><i class="fa fa-plus"></i>Add New</a>
+                <?php if(is_allowed_write_module()) { ?>
+                    <a href="<?php echo base_url("emailsettings/add_new_email");?>" class="btn-outline btn-primary btn-xs pull-right"><i class="fa fa-plus"></i>Add New</a>
+                <?php } ?>
             </h4>
         </div><!-- END column -->
 
@@ -75,11 +77,13 @@ input:checked + .slider:before {
 
                 <?php if(empty($items)) { ?>
 
-                <div class="alert alert-info">
+                    <?php if(is_allowed_write_module()) { ?>
+                        <div class="alert alert-info">
 
-                    <h4 class="alert-title">custom alert info</h4>
-                    <p>There is no data. Please <a href="<?php echo base_url("emailsettings/add_new_email");?>"><font color="#00008b">click here</font></a> to add data.</p>
-                </div>
+                            <h4 class="alert-title">custom alert info</h4>
+                            <p>There is no data. Please <a href="<?php echo base_url("emailsettings/add_new_email");?>"><font color="#00008b">click here</font></a> to add data.</p>
+                        </div>
+                    <?php } ?>
 
                 <?php } else { ?>
 
@@ -124,12 +128,17 @@ input:checked + .slider:before {
                         </label>
                         </td>
                         <td class="text-center w250">
-                            <button
-                                    data-url="<?php echo base_url("emailsettings/delete_email/$item->id");?>"
-                                    class="btn btn-sm btn-danger btn-remove">
-                                    <i class="fa fa-trash"></i> Delete
-                            </button>
-                            <a href="<?php echo base_url("emailsettings/update_existing_email/$item->id");?>" class="btn btn-sm btn-info"><i class="fa fa-pencil-square-o"></i> Edit</a>
+                            <?php if(is_allowed_delete_module()) { ?>
+                                <button
+                                        data-url="<?php echo base_url("emailsettings/delete_record/$item->id");?>"
+                                        class="btn btn-sm btn-danger btn-remove">
+                                        <i class="fa fa-trash"></i> Delete
+                                </button>
+                            <?php } ?>
+
+                            <?php if(is_allowed_update_module()) { ?>
+                                <a href="<?php echo base_url("emailsettings/update_existing_email/$item->id");?>" class="btn btn-sm btn-info"><i class="fa fa-pencil-square-o"></i> Edit</a>
+                            <?php } ?>
                         </td>
                     </tr>
 

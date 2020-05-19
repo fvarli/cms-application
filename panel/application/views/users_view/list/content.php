@@ -121,13 +121,18 @@ input:checked + .slider:before {
                             </label>
                             </td>
                             <td class="text-center w500">
-                                <button
-                                        data-url="<?php echo base_url("users/delete_user/$item->id");?>"
-                                        class="btn btn-sm btn-danger btn-remove">
-                                        <i class="fa fa-trash"></i> Delete
-                                </button>
-                                <a href="<?php echo base_url("users/update_existing_user/$item->id");?>" class="btn btn-sm btn-info"><i class="fa fa-pencil-square-o"></i> Edit</a>
-                                <a href="<?php echo base_url("users/update_existing_user_password/$item->id");?>" class="btn btn-sm btn-warning"><i class="fa fa-key"></i> Edit Password</a>
+                                <?php if(is_allowed_delete_module()) { ?>
+                                    <button
+                                            data-url="<?php echo base_url("users/delete_record/$item->id");?>"
+                                            class="btn btn-sm btn-danger btn-remove">
+                                            <i class="fa fa-trash"></i> Delete
+                                    </button>
+                                <?php } ?>
+
+                                <?php if(is_allowed_update_module()) { ?>
+                                    <a href="<?php echo base_url("users/update_existing_user/$item->id");?>" class="btn btn-sm btn-info"><i class="fa fa-pencil-square-o"></i> Edit</a>
+                                    <a href="<?php echo base_url("users/update_existing_user_password/$item->id");?>" class="btn btn-sm btn-warning"><i class="fa fa-key"></i> Edit Password</a>
+                                <?php } ?>
                             </td>
                         </tr>
 

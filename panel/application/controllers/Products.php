@@ -237,9 +237,9 @@ class Products extends MY_Controller{
             }
     }
 
-    public function delete_product($id){
+    public function delete_record($id){
 
-        $delete = $this->product_model->deleteProduct(
+        $delete = $this->product_model->delete_record(
             array(
                 "id" => $id
             )
@@ -264,6 +264,10 @@ class Products extends MY_Controller{
 
     public function isActiveSetter($id)
     {
+        if(!is_allowed_update_module()){
+            die();
+        }
+
         if($id){
             $isActive = ($this->input->post("data") === "true") ? 1 : 0;
 
@@ -280,6 +284,10 @@ class Products extends MY_Controller{
 
     public function rankSetter()
     {
+        if(!is_allowed_update_module()){
+            die();
+        }
+
         $data = $this->input->post("data");
 
         parse_str($data, $order);
@@ -414,6 +422,10 @@ class Products extends MY_Controller{
 
     public function imageIsActiveSetter($id)
     {
+        if(!is_allowed_update_module()){
+            die();
+        }
+
         if($id){
             $isActive = ($this->input->post("data") === "true") ? 1 : 0;
 
@@ -430,6 +442,10 @@ class Products extends MY_Controller{
 
     public function imageRankSetter()
     {
+        if(!is_allowed_update_module()){
+            die();
+        }
+
         $data = $this->input->post("data");
 
         parse_str($data, $order);
