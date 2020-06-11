@@ -11,7 +11,7 @@
 
 
 
-            <?php $this->load->view("{$viewFolder}/{$subViewFolder}/content")?>
+<?php $this->load->view("{$viewFolder}/{$subViewFolder}/content")?>
 
 <?php $this->load->view("{$viewFolder}/{$subViewFolder}/page_script");?>
 
