@@ -7,7 +7,7 @@
         $user = $t->session->userdata("user");
         //return true;
 
-        if ($user->user_role == "Admin")
+        if ($user->user_role_id == 1)
             return true;
         else
             return false;
